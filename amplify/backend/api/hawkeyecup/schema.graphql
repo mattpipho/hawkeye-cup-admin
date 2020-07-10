@@ -1,0 +1,37 @@
+type Course @model {
+	id: ID!
+	name: String!
+	shortName: String
+	holes: [Hole] @connection(keyName: "byCourse", fields: ["id"])
+}
+
+type Hole @model @key(name: "byCourse", fields: ["courseID"]) {
+	id: ID!
+	number: Int!
+	par: Int!
+	handicap: Int
+	yardage: Int
+	courseID: ID!
+	course: Course @connection(fields: ["courseID"])
+}
+
+# type Blog @model {
+#   id: ID!
+#   name: String!
+#   posts: [Post] @connection(keyName: "byBlog", fields: ["id"])
+# }
+
+# type Post @model @key(name: "byBlog", fields: ["blogID"]) {
+#   id: ID!
+#   title: String!
+#   blogID: ID!
+#   blog: Blog @connection(fields: ["blogID"])
+#   comments: [Comment] @connection(keyName: "byPost", fields: ["id"])
+# }
+
+# type Comment @model @key(name: "byPost", fields: ["postID", "content"]) {
+#   id: ID!
+#   postID: ID!
+#   post: Post @connection(fields: ["postID"])
+#   content: String!
+# }

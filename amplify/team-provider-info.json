@@ -1,0 +1,20 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-hawkeyecupadmin-dev-124202-authRole",
+            "UnauthRoleArn": "arn:aws:iam::125534393296:role/amplify-hawkeyecupadmin-dev-124202-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::125534393296:role/amplify-hawkeyecupadmin-dev-124202-authRole",
+            "Region": "us-east-2",
+            "DeploymentBucketName": "amplify-hawkeyecupadmin-dev-124202-deployment",
+            "UnauthRoleName": "amplify-hawkeyecupadmin-dev-124202-unauthRole",
+            "StackName": "amplify-hawkeyecupadmin-dev-124202",
+            "StackId": "arn:aws:cloudformation:us-east-2:125534393296:stack/amplify-hawkeyecupadmin-dev-124202/acb8f800-c2d4-11ea-8b9a-0a9fef599330",
+            "AmplifyAppId": "d1z36vo0wu1gnz"
+        },
+        "categories": {
+            "auth": {
+                "hawkeyecupadmin4c082227": {}
+            }
+        }
+    }
+}
