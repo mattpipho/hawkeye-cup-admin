@@ -1,8 +1,8 @@
 {
-    "identityPoolName": "hawkeyecupadmin4c082227_identitypool_4c082227",
+    "identityPoolName": "hawkeyecupadmina0941113_identitypool_a0941113",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "hawkey4c082227",
-    "userPoolName": "hawkeyecupadmin4c082227_userpool_4c082227",
+    "resourceNameTruncated": "hawkeya0941113",
+    "userPoolName": "hawkeyecupadmina0941113_userpool_a0941113",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -28,10 +28,10 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "hawkey4c082227_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "hawkeya0941113_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "4c082227",
-    "resourceName": "hawkeyecupadmin4c082227",
+    "sharedId": "a0941113",
+    "resourceName": "hawkeyecupadmina0941113",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
         "Fn::GetAtt": [
@@ -46,6 +46,9 @@
         ]
     },
     "useDefault": "default",
+    "usernameAttributes": [
+        "email, phone_number"
+    ],
     "userPoolGroupList": [],
     "dependsOn": []
 }

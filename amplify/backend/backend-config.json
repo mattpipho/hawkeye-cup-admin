@@ -1,6 +1,6 @@
 {
 	"auth": {
-		"hawkeyecupadmin4c082227": {
+		"hawkeyecupadmina0941113": {
 			"service": "Cognito",
 			"providerPlugin": "awscloudformation",
 			"dependsOn": [],
