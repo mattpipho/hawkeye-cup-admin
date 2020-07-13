@@ -1,5 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Layout } from "antd";
+import MainNavbar from "./MainNavbar";
 
 const { Content } = Layout;
 
@@ -8,12 +10,14 @@ const MainLayout = ({ children }) => {
 		<Layout className="layout">
 			<div id="mainheader">
 				<div>
-					<img id="mainlogo" src="hawkeye.png" alt="Home Page" />
+					<Link to="/">
+						<img id="mainlogo" src="hawkeye.png" alt="Home Page" />
+					</Link>
 				</div>
 			</div>
-			{/* <div id="mainNavbar">
+			<div id="mainNavbar">
 				<MainNavbar />
-			</div> */}
+			</div>
 			<Content>
 				<div className="site-layout-content">{children}</div>
 			</Content>
