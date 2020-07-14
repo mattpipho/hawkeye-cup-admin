@@ -65,6 +65,20 @@
 	border: 1px solid blue;
 }
 
+.black {
+	background-color: black;
+	color: white;
+}
+.black:hover {
+	background-color: black;
+	color: white;
+}
+
+.gold {
+	background-color: #fcd116;
+	color: white;
+}
+
 @media only screen and (max-width: 550px) {
 	.ant-layout-content {
 		padding: 0px;

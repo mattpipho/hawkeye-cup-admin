@@ -1,13 +1,17 @@
 import React from "react";
 import { Table, Button } from "antd";
 
-const CourseList = ({ courses, dispatch }) => {
-	courses.sort((a, b) => a.name.localeCompare(b.name));
+import { useMainState } from "../context/mainContext";
+
+const CourseList = ({ dispatch }) => {
+	const mainState = useMainState();
+
+	mainState.courses.sort((a, b) => a.name.localeCompare(b.name));
 	const columns = [
-		{
-			title: "ID",
-			dataIndex: "id",
-		},
+		// {
+		// 	title: "ID",
+		// 	dataIndex: "id",
+		// },
 		{
 			title: "Name",
 			dataIndex: "name",
@@ -18,14 +22,17 @@ const CourseList = ({ courses, dispatch }) => {
 		},
 		{
 			title: "Holes",
-			render: (record) => <div>{record.holes.items.length}</div>,
+			render: (record) => {
+				if (!record.holes) return <div>0</div>;
+				return <div>{record.holes.items.length}</div>;
+			},
 		},
 		{
 			title: "Action",
 			key: "action",
 			render: (text, record) => (
 				<span>
-					<Button
+					{/* <Button
 						onClick={() =>
 							dispatch({
 								type: "DISPLAY_EDIT_COURSE",
@@ -34,7 +41,7 @@ const CourseList = ({ courses, dispatch }) => {
 						}
 					>
 						Edit
-					</Button>
+					</Button> */}
 					<Button
 						onClick={() =>
 							dispatch({
@@ -45,7 +52,6 @@ const CourseList = ({ courses, dispatch }) => {
 					>
 						Import Holes
 					</Button>
-					<Button>Delete</Button>
 				</span>
 			),
 		},
@@ -55,7 +61,7 @@ const CourseList = ({ courses, dispatch }) => {
 		<Table
 			title={() => "Course List"}
 			columns={columns}
-			dataSource={courses}
+			dataSource={mainState.courses}
 			rowKey="id"
 			size="small"
 			pagination={{ pageSize: 50 }}

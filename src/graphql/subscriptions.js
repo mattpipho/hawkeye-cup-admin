@@ -145,3 +145,45 @@ export const onDeleteHole = /* GraphQL */ `
     }
   }
 `;
+export const onCreateGolfer = /* GraphQL */ `
+  subscription OnCreateGolfer {
+    onCreateGolfer {
+      id
+      email
+      firstName
+      lastName
+      team
+      handicap
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateGolfer = /* GraphQL */ `
+  subscription OnUpdateGolfer {
+    onUpdateGolfer {
+      id
+      email
+      firstName
+      lastName
+      team
+      handicap
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteGolfer = /* GraphQL */ `
+  subscription OnDeleteGolfer {
+    onDeleteGolfer {
+      id
+      email
+      firstName
+      lastName
+      team
+      handicap
+      createdAt
+      updatedAt
+    }
+  }
+`;

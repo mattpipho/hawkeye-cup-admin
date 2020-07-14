@@ -15,6 +15,15 @@ type Hole @model @key(name: "byCourse", fields: ["courseID"]) {
 	course: Course @connection(fields: ["courseID"])
 }
 
+type Golfer @model {
+	id: ID!
+	email: String!
+	firstName: String
+	lastName: String
+	team: String
+	handicap: Int
+}
+
 # type Blog @model {
 #   id: ID!
 #   name: String!

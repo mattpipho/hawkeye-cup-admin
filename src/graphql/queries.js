@@ -98,3 +98,38 @@ export const listHoles = /* GraphQL */ `
     }
   }
 `;
+export const getGolfer = /* GraphQL */ `
+  query GetGolfer($id: ID!) {
+    getGolfer(id: $id) {
+      id
+      email
+      firstName
+      lastName
+      team
+      handicap
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listGolfers = /* GraphQL */ `
+  query ListGolfers(
+    $filter: ModelGolferFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listGolfers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        email
+        firstName
+        lastName
+        team
+        handicap
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;

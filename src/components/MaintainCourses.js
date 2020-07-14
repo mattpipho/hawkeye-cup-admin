@@ -16,14 +16,12 @@ const initialState = {
 	addSectionDisplay: "DISPLAY_BUTTONS",
 };
 const reducer = (state, action) => {
-	console.log(action.type);
 	switch (action.type) {
 		case "DISPLAY_BUTTONS":
 			return { ...state, addSectionDisplay: "DISPLAY_BUTTONS" };
 		case "DISPLAY_ADD_FORM":
 			return { ...state, addSectionDisplay: "DISPLAY_ADD_FORM" };
 		case "DISPLAY_EDIT_COURSE":
-			console.log(action);
 			return {
 				...state,
 				addSectionDisplay: "DISPLAY_EDIT_COURSE",
@@ -85,7 +83,6 @@ const MaintainCourse = () => {
 		try {
 			const courseData = await API.graphql(graphqlOperation(listCourses));
 			const courses = courseData.data.listCourses.items;
-			console.log(courses);
 			dispatch({ type: "SET_COURSES", payload: courses });
 		} catch (err) {
 			console.log("error fetching courses");
