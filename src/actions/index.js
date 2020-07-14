@@ -46,7 +46,6 @@ export const updateGolferTeam = (golferId, newTeam) => {
 	};
 };
 export const updateGolferHDCP = (golferId, newHDCP) => {
-	console.log(newHDCP);
 	return {
 		type: "UPDATE_GOLFER_HDCP",
 		golferId,

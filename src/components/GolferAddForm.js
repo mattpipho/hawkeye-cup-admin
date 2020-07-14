@@ -59,7 +59,7 @@ const CourseAddForm = () => {
 
 				<Form.Item {...tailLayout}>
 					<Button type="primary" htmlType="submit">
-						Save Course
+						Save Golfer
 					</Button>
 					<Button htmlType="button" onClick={onReset}>
 						Cancel

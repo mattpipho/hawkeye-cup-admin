@@ -9,7 +9,6 @@ const GolferList = () => {
 	const dispatch = useMainDispatch();
 
 	mainState.golfers.sort((a, b) => a.lastName.localeCompare(b.lastName));
-	console.log(mainState.golfers);
 	const columns = [
 		{
 			title: "First Name",
@@ -29,6 +28,7 @@ const GolferList = () => {
 			render: (text, golfer) => (
 				<Select
 					value={golfer.team}
+					size={"small"}
 					style={{ width: 100 }}
 					onChange={(newTeam) =>
 						dispatch(updateGolferTeam(golfer.id, newTeam))
@@ -45,6 +45,8 @@ const GolferList = () => {
 			render: (text, golfer) => (
 				<Input
 					value={golfer.handicap}
+					size={"small"}
+					style={{ width: 100 }}
 					onChange={(newHDCP) =>
 						dispatch(
 							updateGolferHDCP(golfer.id, newHDCP.target.value)
@@ -58,7 +60,10 @@ const GolferList = () => {
 			key: "action",
 			render: (text, golfer) => (
 				<span>
-					<Button onClick={() => dispatch(deleteGolfer(golfer.id))}>
+					<Button
+						size={"small"}
+						onClick={() => dispatch(deleteGolfer(golfer.id))}
+					>
 						Delete
 					</Button>
 				</span>
