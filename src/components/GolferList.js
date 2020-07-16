@@ -79,9 +79,17 @@ const GolferList = () => {
 			rowKey="id"
 			size="small"
 			pagination={{ pageSize: 50 }}
-			rowClassName={(record, index) =>
-				record.team === "Black" ? "black" : "gold"
-			}
+			rowClassName={(record, index) => {
+				switch (record.team) {
+					case "Black":
+						return "black";
+					case "Gold":
+						return "gold";
+
+					default:
+						return "";
+				}
+			}}
 		/>
 	);
 };

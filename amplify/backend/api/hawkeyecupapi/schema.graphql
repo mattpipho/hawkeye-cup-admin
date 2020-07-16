@@ -1,0 +1,86 @@
+type Configuration @model {
+	key: String!
+	value: String!
+}
+
+type Course @model {
+	id: ID!
+	name: String!
+	shortName: String
+	holes: [Hole] @connection(keyName: "byCourse", fields: ["id"])
+}
+
+type Hole @model @key(name: "byCourse", fields: ["courseID"]) {
+	id: ID!
+	number: Int!
+	par: Int!
+	handicap: Int
+	yardage: Int
+	courseID: ID!
+	course: Course @connection(fields: ["courseID"])
+}
+
+type Golfer @model {
+	id: ID!
+	email: String!
+	firstName: String
+	lastName: String
+	team: String
+	handicap: Int
+	rounds: [GolferRound] @connection(keyName: "byGolfer", fields: ["id"])
+	scores: [Score] @connection(keyName: "byGolferScore", fields: ["id"])
+}
+
+type GolferRound
+	@model(queries: null)
+	@key(name: "byGolfer", fields: ["golferID", "roundID"])
+	@key(name: "byRound", fields: ["roundID", "golferID"]) {
+	id: ID!
+	golferID: ID!
+	roundID: ID!
+	golfer: Golfer! @connection(fields: ["golferID"])
+	round: Round! @connection(fields: ["roundID"])
+}
+
+type Round @model @key(name: "byCourse", fields: ["courseID"]) {
+	id: ID!
+	name: String!
+	courseID: ID!
+	course: Course @connection(fields: ["courseID"])
+	golfers: [GolferRound] @connection(keyName: "byRound", fields: ["id"])
+	scores: [Score] @connection(keyName: "byRoundScore", fields: ["id"])
+	teeTimes: [TeeTime] @connection(keyName: "byTeeTimeRound", fields: ["id"])
+}
+
+type Score
+	@model
+	@key(name: "byGolferScore", fields: ["golferID"])
+	@key(name: "byRoundScore", fields: ["roundID"]) {
+	id: ID!
+	golferID: ID!
+	golfer: Golfer! @connection(fields: ["golferID"])
+	roundID: ID!
+	round: Round @connection(fields: ["roundID"])
+	holeID: ID!
+	hole: Hole @connection(fields: ["holeID"])
+	score: Int!
+}
+
+type TeeTimeGolfer
+	@model(queries: null)
+	@key(name: "byGolfer", fields: ["golferID", "teeTimeID"])
+	@key(name: "byTeeTime", fields: ["teeTimeID", "golferID"]) {
+	id: ID!
+	golferID: ID!
+	teeTimeID: ID!
+	golfer: Golfer! @connection(fields: ["golferID"])
+	teeTime: TeeTime! @connection(fields: ["teeTimeID"])
+}
+
+type TeeTime @model @key(name: "byTeeTimeRound", fields: ["roundID"]) {
+	id: ID!
+	name: String
+	roundID: ID!
+	round: Round @connection(fields: ["roundID"])
+	golfers: [TeeTimeGolfer] @connection(keyName: "byGolfer", fields: ["id"])
+}

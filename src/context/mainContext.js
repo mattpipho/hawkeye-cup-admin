@@ -1,10 +1,21 @@
 import React, { useReducer, createContext, useEffect } from "react";
 import { API, graphqlOperation } from "aws-amplify";
+
+//import Amplify from "@aws-amplify/core";
+// import { DataStore, Predicates } from "@aws-amplify/datastore";
+// import { Round } from "./models";
+
 import { listCourses } from "../graphql/custom-queries";
-import { listGolfers } from "../graphql/queries";
+import { listGolfers, listRounds } from "../graphql/queries";
 
 import { remoteRefresh } from "../actions";
-import { saveGolfer, updateGolfer, deleteGolfer } from "../utilities";
+import {
+	deleteGolfer,
+	deleteRound,
+	saveGolfer,
+	saveRound,
+	updateGolfer,
+} from "../utilities";
 
 const MainStateContext = createContext();
 const MainDispatchContext = createContext();
@@ -13,6 +24,7 @@ const initialState = {
 	loading: true,
 	courses: [],
 	golfers: [],
+	rounds: [],
 	errors: null,
 };
 
@@ -21,6 +33,9 @@ const mainReducer = (state, action) => {
 		case "ADD_GOLFER":
 			saveGolfer(action.values);
 			return { ...state, golfers: [...state.golfers, action.values] };
+		case "ADD_ROUND":
+			saveRound(action.values);
+			return { ...state, rounds: [...state.rounds, action.values] };
 		case "DELETE_GOLFER":
 			const deleteIndex = state.golfers.findIndex(
 				(g) => g.id === action.golferId
@@ -31,6 +46,17 @@ const mainReducer = (state, action) => {
 			return {
 				...state,
 				golfers: golfers,
+			};
+		case "DELETE_ROUND":
+			const deleteRoundIndex = state.rounds.findIndex(
+				(r) => r.id === action.roundID
+			);
+			let rounds = [...state.rounds];
+			rounds.splice(deleteRoundIndex, 1);
+			deleteRound(action.roundID);
+			return {
+				...state,
+				rounds: rounds,
 			};
 		case "REMOTE_REFRESH":
 			return action.values;
@@ -69,10 +95,14 @@ async function fetchInitialState() {
 		const userData = await API.graphql(graphqlOperation(listGolfers));
 		const golfers = userData.data.listGolfers.items;
 
+		const roundData = await API.graphql(graphqlOperation(listRounds));
+		const rounds = roundData.data.listRounds.items;
+
 		return {
 			loading: false,
 			courses: courses,
 			golfers: golfers,
+			rounds: rounds,
 			errors: null,
 		};
 	} catch (error) {

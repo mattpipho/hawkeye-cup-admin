@@ -9,6 +9,7 @@ import "../App.css";
 const HomePage = lazy(() => import("./HomePage"));
 const MaintainCourses = lazy(() => import("./MaintainCourses"));
 const MaintainGolfers = lazy(() => import("./MaintainGolfers"));
+const MaintainRounds = lazy(() => import("./MaintainRounds"));
 
 function App() {
 	return (
@@ -26,6 +27,9 @@ function App() {
 						</Route>
 						<Route exact path="/golfers">
 							<MaintainGolfers />
+						</Route>
+						<Route exact path="/rounds">
+							<MaintainRounds />
 						</Route>
 					</Switch>
 				</Router>

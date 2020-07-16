@@ -3,6 +3,8 @@ import {
 	createGolfer,
 	updateGolfer as gqlUpdateGolfer,
 	deleteGolfer as gqlDeleteGolfer,
+	deleteRound as gqlDeleteRound,
+	createRound,
 } from "../graphql/mutations";
 import { message } from "antd";
 
@@ -19,6 +21,21 @@ export const deleteGolfer = async (golfer) => {
 	} catch (error) {
 		console.log(error);
 		message.error("Golfer Not Deleted");
+	}
+};
+export const deleteRound = async (round) => {
+	try {
+		await API.graphql(
+			graphqlOperation(gqlDeleteRound, {
+				input: {
+					id: round,
+				},
+			})
+		);
+		message.info("Round Deleted");
+	} catch (error) {
+		console.log(error);
+		message.error("Round Not Deleted");
 	}
 };
 
@@ -52,6 +69,15 @@ export const saveGolfer = async (values) => {
 	} catch (error) {
 		console.log(error);
 		message.error("Golfer Not Added");
+	}
+};
+export const saveRound = async (values) => {
+	try {
+		await API.graphql(graphqlOperation(createRound, { input: values }));
+		message.info("Round Added");
+	} catch (error) {
+		console.log(error);
+		message.error("Round Not Added");
 	}
 };
 

@@ -12,6 +12,9 @@ const Navbar = () => {
 				<Menu.Item key="golfers">
 					<Link to="/golfers">Golfers</Link>
 				</Menu.Item>
+				<Menu.Item key="rounds">
+					<Link to="/rounds">Rounds</Link>
+				</Menu.Item>
 			</Menu>
 		</div>
 	);

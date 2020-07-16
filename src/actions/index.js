@@ -24,10 +24,24 @@ export const addHole = (values) => {
 		values,
 	};
 };
+export const addRound = (values) => {
+	values = { ...values, id: uuidv4() };
+	console.log(values.id);
+	return {
+		type: "ADD_ROUND",
+		values,
+	};
+};
 export const deleteGolfer = (golferId) => {
 	return {
 		type: "DELETE_GOLFER",
 		golferId,
+	};
+};
+export const deleteRound = (roundID) => {
+	return {
+		type: "DELETE_ROUND",
+		roundID,
 	};
 };
 
