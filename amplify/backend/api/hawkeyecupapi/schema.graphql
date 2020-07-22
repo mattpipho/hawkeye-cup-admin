@@ -1,4 +1,5 @@
 type Configuration @model {
+	id: ID!
 	key: String!
 	value: String!
 }
@@ -29,6 +30,7 @@ type Golfer @model {
 	handicap: Int
 	rounds: [GolferRound] @connection(keyName: "byGolfer", fields: ["id"])
 	scores: [Score] @connection(keyName: "byGolferScore", fields: ["id"])
+	teeTimes: [TeeTimeGolfer] @connection(keyName: "byGolferTT", fields: ["id"])
 }
 
 type GolferRound
@@ -68,6 +70,7 @@ type Score
 
 type TeeTimeGolfer
 	@model(queries: null)
+	@key(name: "byGolferTT", fields: ["golferID", "teeTimeID"])
 	@key(name: "byGolfer", fields: ["golferID", "teeTimeID"])
 	@key(name: "byTeeTime", fields: ["teeTimeID", "golferID"]) {
 	id: ID!
@@ -82,5 +85,5 @@ type TeeTime @model @key(name: "byTeeTimeRound", fields: ["roundID"]) {
 	name: String
 	roundID: ID!
 	round: Round @connection(fields: ["roundID"])
-	golfers: [TeeTimeGolfer] @connection(keyName: "byGolfer", fields: ["id"])
+	golfers: [TeeTimeGolfer] @connection(keyName: "byTeeTime", fields: ["id"])
 }

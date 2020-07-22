@@ -1,13 +1,48 @@
 import { Auth, API, graphqlOperation } from "aws-amplify";
 import {
+	createConfiguration,
 	createGolfer,
-	updateGolfer as gqlUpdateGolfer,
-	deleteGolfer as gqlDeleteGolfer,
-	deleteRound as gqlDeleteRound,
 	createRound,
+	createTeeTimeGolfer,
+	deleteConfiguration as gqlDeleteConfiguration,
+	deleteGolfer as gqlDeleteGolfer,
+	deleteTeeTimeGolfer as gqlDeleteGolferTeeTime,
+	deleteRound as gqlDeleteRound,
+	updateConfiguration as gqlUpdateConfiguration,
+	updateGolfer as gqlUpdateGolfer,
+	createTeeTime as gqlCreateTeeTime,
 } from "../graphql/mutations";
 import { message } from "antd";
 
+export const addTeeTimeGolfer = async (teeTimeID, golferID) => {
+	console.log(teeTimeID, golferID);
+	try {
+		await API.graphql(
+			graphqlOperation(createTeeTimeGolfer, {
+				input: { golferID, teeTimeID },
+			})
+		);
+		message.success("Tee Time Golfer Added");
+	} catch (error) {
+		console.log(error);
+		message.error("Tee Time Golfer Not Added");
+	}
+};
+export const deleteConfiguration = async (config) => {
+	try {
+		await API.graphql(
+			graphqlOperation(gqlDeleteConfiguration, {
+				input: {
+					id: config,
+				},
+			})
+		);
+		message.success("Configuration Deleted");
+	} catch (error) {
+		console.log(error);
+		message.error("Configuration Not Deleted");
+	}
+};
 export const deleteGolfer = async (golfer) => {
 	try {
 		await API.graphql(
@@ -17,12 +52,29 @@ export const deleteGolfer = async (golfer) => {
 				},
 			})
 		);
-		message.info("Golfer Deleted");
+		message.success("Golfer Deleted");
 	} catch (error) {
 		console.log(error);
 		message.error("Golfer Not Deleted");
 	}
 };
+
+export const deleteGolferTeeTime = async (golferTeeTimeId) => {
+	try {
+		await API.graphql(
+			graphqlOperation(gqlDeleteGolferTeeTime, {
+				input: {
+					id: golferTeeTimeId,
+				},
+			})
+		);
+		message.success("Golfer Tee Time Deleted");
+	} catch (error) {
+		console.log(error);
+		message.error("Golfer Tee Time Not Deleted");
+	}
+};
+
 export const deleteRound = async (round) => {
 	try {
 		await API.graphql(
@@ -32,7 +84,7 @@ export const deleteRound = async (round) => {
 				},
 			})
 		);
-		message.info("Round Deleted");
+		message.success("Round Deleted");
 	} catch (error) {
 		console.log(error);
 		message.error("Round Not Deleted");
@@ -62,10 +114,21 @@ export const listUsers = async () => {
 	return rest;
 };
 
+export const saveConfiguration = async (values) => {
+	try {
+		await API.graphql(
+			graphqlOperation(createConfiguration, { input: values })
+		);
+		message.success("Configuration Added");
+	} catch (error) {
+		console.log(error);
+		message.error("Configuration Not Added");
+	}
+};
 export const saveGolfer = async (values) => {
 	try {
 		await API.graphql(graphqlOperation(createGolfer, { input: values }));
-		message.info("Golfer Added");
+		message.success("Golfer Added");
 	} catch (error) {
 		console.log(error);
 		message.error("Golfer Not Added");
@@ -74,15 +137,56 @@ export const saveGolfer = async (values) => {
 export const saveRound = async (values) => {
 	try {
 		await API.graphql(graphqlOperation(createRound, { input: values }));
-		message.info("Round Added");
+		await API.graphql(
+			graphqlOperation(gqlCreateTeeTime, {
+				input: { name: "Group 1", roundID: values.id },
+			})
+		);
+		await API.graphql(
+			graphqlOperation(gqlCreateTeeTime, {
+				input: { name: "Group 2", roundID: values.id },
+			})
+		);
+		await API.graphql(
+			graphqlOperation(gqlCreateTeeTime, {
+				input: { name: "Group 3", roundID: values.id },
+			})
+		);
+		await API.graphql(
+			graphqlOperation(gqlCreateTeeTime, {
+				input: { name: "Group 4", roundID: values.id },
+			})
+		);
+		await API.graphql(
+			graphqlOperation(gqlCreateTeeTime, {
+				input: { name: "Group 5", roundID: values.id },
+			})
+		);
+		message.success("Round Added");
 	} catch (error) {
 		console.log(error);
 		message.error("Round Not Added");
 	}
 };
 
+export const updateConfiguration = async (config) => {
+	try {
+		await API.graphql(
+			graphqlOperation(gqlUpdateConfiguration, {
+				input: {
+					id: config.id,
+					value: config.value,
+				},
+			})
+		);
+		message.success(`${config.key} updated`);
+	} catch (error) {
+		console.log(error);
+		message.error(`${config.key} not updated`);
+	}
+};
+
 export const updateGolfer = async (golfer) => {
-	console.log(golfer);
 	try {
 		await API.graphql(
 			graphqlOperation(gqlUpdateGolfer, {
@@ -96,7 +200,7 @@ export const updateGolfer = async (golfer) => {
 				},
 			})
 		);
-		message.info("Golfer Updated");
+		message.success("Golfer Updated");
 	} catch (error) {
 		console.log(error);
 		message.error("Golfer Not Updated");

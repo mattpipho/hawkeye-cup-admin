@@ -4,6 +4,7 @@
 export const getConfiguration = /* GraphQL */ `
   query GetConfiguration($id: ID!) {
     getConfiguration(id: $id) {
+      id
       key
       value
       createdAt
@@ -19,6 +20,7 @@ export const listConfigurations = /* GraphQL */ `
   ) {
     listConfigurations(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
+        id
         key
         value
         createdAt
@@ -156,6 +158,16 @@ export const getGolfer = /* GraphQL */ `
         }
         nextToken
       }
+      teeTimes {
+        items {
+          id
+          golferID
+          teeTimeID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -179,6 +191,9 @@ export const listGolfers = /* GraphQL */ `
           nextToken
         }
         scores {
+          nextToken
+        }
+        teeTimes {
           nextToken
         }
         createdAt
@@ -291,6 +306,9 @@ export const getScore = /* GraphQL */ `
           nextToken
         }
         scores {
+          nextToken
+        }
+        teeTimes {
           nextToken
         }
         createdAt

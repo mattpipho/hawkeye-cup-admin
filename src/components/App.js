@@ -10,6 +10,10 @@ const HomePage = lazy(() => import("./HomePage"));
 const MaintainCourses = lazy(() => import("./MaintainCourses"));
 const MaintainGolfers = lazy(() => import("./MaintainGolfers"));
 const MaintainRounds = lazy(() => import("./MaintainRounds"));
+const Tasks = lazy(() => import("./Tasks"));
+const MaintainConfigurations = lazy(() =>
+	import("./configurations/MaintainConfigurations")
+);
 
 function App() {
 	return (
@@ -22,6 +26,9 @@ function App() {
 						<Route exact path="/">
 							<HomePage />
 						</Route>
+						<Route exact path="/configurations">
+							<MaintainConfigurations />
+						</Route>
 						<Route exact path="/courses">
 							<MaintainCourses />
 						</Route>
@@ -30,6 +37,9 @@ function App() {
 						</Route>
 						<Route exact path="/rounds">
 							<MaintainRounds />
+						</Route>
+						<Route exact path="/tasks">
+							<Tasks />
 						</Route>
 					</Switch>
 				</Router>

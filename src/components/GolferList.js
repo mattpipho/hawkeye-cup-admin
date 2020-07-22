@@ -82,9 +82,9 @@ const GolferList = () => {
 			rowClassName={(record, index) => {
 				switch (record.team) {
 					case "Black":
-						return "black";
+						return "black-indicator-row";
 					case "Gold":
-						return "gold";
+						return "gold-indicator-row";
 
 					default:
 						return "";

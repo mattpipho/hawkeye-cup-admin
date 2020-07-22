@@ -4,6 +4,7 @@
 export const onCreateConfiguration = /* GraphQL */ `
   subscription OnCreateConfiguration {
     onCreateConfiguration {
+      id
       key
       value
       createdAt
@@ -14,6 +15,7 @@ export const onCreateConfiguration = /* GraphQL */ `
 export const onUpdateConfiguration = /* GraphQL */ `
   subscription OnUpdateConfiguration {
     onUpdateConfiguration {
+      id
       key
       value
       createdAt
@@ -24,6 +26,7 @@ export const onUpdateConfiguration = /* GraphQL */ `
 export const onDeleteConfiguration = /* GraphQL */ `
   subscription OnDeleteConfiguration {
     onDeleteConfiguration {
+      id
       key
       value
       createdAt
@@ -206,6 +209,16 @@ export const onCreateGolfer = /* GraphQL */ `
         }
         nextToken
       }
+      teeTimes {
+        items {
+          id
+          golferID
+          teeTimeID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -237,6 +250,16 @@ export const onUpdateGolfer = /* GraphQL */ `
           roundID
           holeID
           score
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      teeTimes {
+        items {
+          id
+          golferID
+          teeTimeID
           createdAt
           updatedAt
         }
@@ -278,6 +301,16 @@ export const onDeleteGolfer = /* GraphQL */ `
         }
         nextToken
       }
+      teeTimes {
+        items {
+          id
+          golferID
+          teeTimeID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -300,6 +333,9 @@ export const onCreateGolferRound = /* GraphQL */ `
           nextToken
         }
         scores {
+          nextToken
+        }
+        teeTimes {
           nextToken
         }
         createdAt
@@ -352,6 +388,9 @@ export const onUpdateGolferRound = /* GraphQL */ `
         scores {
           nextToken
         }
+        teeTimes {
+          nextToken
+        }
         createdAt
         updatedAt
       }
@@ -400,6 +439,9 @@ export const onDeleteGolferRound = /* GraphQL */ `
           nextToken
         }
         scores {
+          nextToken
+        }
+        teeTimes {
           nextToken
         }
         createdAt
@@ -610,6 +652,9 @@ export const onCreateScore = /* GraphQL */ `
         scores {
           nextToken
         }
+        teeTimes {
+          nextToken
+        }
         createdAt
         updatedAt
       }
@@ -679,6 +724,9 @@ export const onUpdateScore = /* GraphQL */ `
         scores {
           nextToken
         }
+        teeTimes {
+          nextToken
+        }
         createdAt
         updatedAt
       }
@@ -746,6 +794,9 @@ export const onDeleteScore = /* GraphQL */ `
           nextToken
         }
         scores {
+          nextToken
+        }
+        teeTimes {
           nextToken
         }
         createdAt
@@ -818,6 +869,9 @@ export const onCreateTeeTimeGolfer = /* GraphQL */ `
         scores {
           nextToken
         }
+        teeTimes {
+          nextToken
+        }
         createdAt
         updatedAt
       }
@@ -862,6 +916,9 @@ export const onUpdateTeeTimeGolfer = /* GraphQL */ `
         scores {
           nextToken
         }
+        teeTimes {
+          nextToken
+        }
         createdAt
         updatedAt
       }
@@ -904,6 +961,9 @@ export const onDeleteTeeTimeGolfer = /* GraphQL */ `
           nextToken
         }
         scores {
+          nextToken
+        }
+        teeTimes {
           nextToken
         }
         createdAt

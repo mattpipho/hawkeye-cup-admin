@@ -6,6 +6,12 @@ const Navbar = () => {
 	return (
 		<div className="menu">
 			<Menu mode="horizontal" theme="light">
+				<Menu.Item key="tasks">
+					<Link to="/tasks">Tasks</Link>
+				</Menu.Item>
+				<Menu.Item key="configurations">
+					<Link to="/configurations">Configurations</Link>
+				</Menu.Item>
 				<Menu.Item key="courses">
 					<Link to="/courses">Courses</Link>
 				</Menu.Item>

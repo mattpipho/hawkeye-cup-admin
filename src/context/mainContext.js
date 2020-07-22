@@ -5,15 +5,20 @@ import { API, graphqlOperation } from "aws-amplify";
 // import { DataStore, Predicates } from "@aws-amplify/datastore";
 // import { Round } from "./models";
 
-import { listCourses } from "../graphql/custom-queries";
-import { listGolfers, listRounds } from "../graphql/queries";
+import { listCourses, listRounds } from "../graphql/custom-queries";
+import { listGolfers, listConfigurations } from "../graphql/queries";
 
-import { remoteRefresh } from "../actions";
+import { remoteRefresh, refreshRounds } from "../actions";
 import {
+	addTeeTimeGolfer,
+	deleteConfiguration,
 	deleteGolfer,
+	deleteGolferTeeTime,
 	deleteRound,
+	saveConfiguration,
 	saveGolfer,
 	saveRound,
+	updateConfiguration,
 	updateGolfer,
 } from "../utilities";
 
@@ -21,21 +26,49 @@ const MainStateContext = createContext();
 const MainDispatchContext = createContext();
 
 const initialState = {
+	staleRounds: false,
 	loading: true,
+	configurations: [],
 	courses: [],
 	golfers: [],
 	rounds: [],
 	errors: null,
 };
 
+const refetchRounds = async () => {
+	const roundData = await API.graphql(graphqlOperation(listRounds));
+	return roundData.data.listRounds.items;
+};
+
 const mainReducer = (state, action) => {
 	switch (action.type) {
+		case "ADD_CONFIGURATION":
+			saveConfiguration(action.values);
+			return {
+				...state,
+				configurations: [...state.configurations, action.values],
+			};
 		case "ADD_GOLFER":
 			saveGolfer(action.values);
 			return { ...state, golfers: [...state.golfers, action.values] };
 		case "ADD_ROUND":
 			saveRound(action.values);
 			return { ...state, rounds: [...state.rounds, action.values] };
+		case "ADD_TEE_TIME_GOLFER":
+			console.log(action.type, action.teeTimeId, action.golferId);
+			addTeeTimeGolfer(action.teeTimeId, action.golferId);
+			return { ...state, staleRounds: true };
+		case "DELETE_CONFIGURATION":
+			const deleteConfigIndex = state.configurations.findIndex(
+				(c) => c.id === action.configId
+			);
+			let configurations = [...state.configurations];
+			configurations.splice(deleteConfigIndex, 1);
+			deleteConfiguration(action.configId);
+			return {
+				...state,
+				configurations,
+			};
 		case "DELETE_GOLFER":
 			const deleteIndex = state.golfers.findIndex(
 				(g) => g.id === action.golferId
@@ -46,6 +79,12 @@ const mainReducer = (state, action) => {
 			return {
 				...state,
 				golfers: golfers,
+			};
+		case "DELETE_GOLFER_TEE_TIME":
+			deleteGolferTeeTime(action.golferTeeTimeId);
+			return {
+				...state,
+				staleRounds: true,
 			};
 		case "DELETE_ROUND":
 			const deleteRoundIndex = state.rounds.findIndex(
@@ -58,8 +97,21 @@ const mainReducer = (state, action) => {
 				...state,
 				rounds: rounds,
 			};
+		case "REFRESH_ROUNDS":
+			return { ...state, rounds: action.values, staleRounds: false };
 		case "REMOTE_REFRESH":
 			return action.values;
+		case "UPDATE_ACTIVE_ROUND":
+			const activeRoundIndex = state.configurations.findIndex(
+				(r) => r.key === "ACTIVE_ROUND"
+			);
+			let updatedConfigState = [...state.configurations];
+			updatedConfigState[activeRoundIndex] = {
+				...updatedConfigState[activeRoundIndex],
+				value: action.roundID,
+			};
+			updateConfiguration(updatedConfigState[activeRoundIndex]);
+			return { ...state, configurations: updatedConfigState };
 		case "UPDATE_GOLFER_HDCP":
 			const hdcpIndex = state.golfers.findIndex(
 				(g) => g.id === action.golferId
@@ -89,6 +141,11 @@ const mainReducer = (state, action) => {
 
 async function fetchInitialState() {
 	try {
+		const configData = await API.graphql(
+			graphqlOperation(listConfigurations)
+		);
+		const configurations = configData.data.listConfigurations.items;
+
 		const courseData = await API.graphql(graphqlOperation(listCourses));
 		const courses = courseData.data.listCourses.items;
 
@@ -97,9 +154,10 @@ async function fetchInitialState() {
 
 		const roundData = await API.graphql(graphqlOperation(listRounds));
 		const rounds = roundData.data.listRounds.items;
-
+		console.log(rounds);
 		return {
 			loading: false,
+			configurations: configurations,
 			courses: courses,
 			golfers: golfers,
 			rounds: rounds,
@@ -122,6 +180,14 @@ const MainProvider = ({ children }) => {
 			dispatch(remoteRefresh(result));
 		});
 	}, []);
+
+	useEffect(() => {
+		if (state.staleRounds) {
+			refetchRounds().then((result) => {
+				dispatch(refreshRounds(result));
+			});
+		}
+	}, [state.staleRounds]);
 
 	return (
 		<MainStateContext.Provider value={state}>

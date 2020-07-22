@@ -69,6 +69,9 @@
 	background-color: black;
 	color: white;
 }
+.black-indicator {
+	border-left: 4px solid black;
+}
 .black:hover {
 	background-color: black;
 	color: white;
@@ -78,7 +81,32 @@
 	background-color: #fcd116;
 	color: white;
 }
+.gold-indicator {
+	border-left: 4px solid #fcd116;
+}
 
+.tee-time-golfer {
+	width: 110px;
+	padding-left: 6px;
+	text-align: left;
+	float: left;
+	padding-top: 8px;
+	padding-bottom: 8px;
+}
+.tee-time-golfer-delete {
+	padding-top: 8px;
+	padding-bottom: 8px;
+	text-align: center;
+}
+.add-golfer-select-wrapper {
+	margin-top: 10px;
+}
+.full-width {
+	width: 100%;
+}
+.float-left {
+	float: left;
+}
 @media only screen and (max-width: 550px) {
 	.ant-layout-content {
 		padding: 0px;

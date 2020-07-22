@@ -1,23 +1,15 @@
 import React from "react";
-import { Form, Button, Input, Select } from "antd";
-import { addRound } from "../actions";
-import { layout, tailLayout } from "../formLayouts";
-import { useMainState, useMainDispatch } from "../context/mainContext";
+import { Form, Button, Input } from "antd";
+import { addConfiguration } from "../../actions";
+import { layout, tailLayout } from "../../formLayouts";
+import { useMainDispatch } from "../../context/mainContext";
 
-const RoundAddForm = () => {
+const ConfigurationAddForm = () => {
 	const [form] = Form.useForm();
-	const mainState = useMainState();
 	const dispatch = useMainDispatch();
 
-	const courseOptions = mainState.courses
-		.sort((a, b) => a.name.localeCompare(b.name))
-		.map((course) => ({
-			label: course.name,
-			value: course.id,
-		}));
-
 	const onFinish = (values) => {
-		dispatch(addRound(values));
+		dispatch(addConfiguration(values));
 		form.resetFields();
 	};
 	const onReset = () => {
@@ -34,8 +26,8 @@ const RoundAddForm = () => {
 				onFinish={onFinish}
 			>
 				<Form.Item
-					name="name"
-					label="Round Name"
+					name="key"
+					label="Key"
 					rules={[
 						{
 							required: true,
@@ -45,20 +37,20 @@ const RoundAddForm = () => {
 					<Input />
 				</Form.Item>
 				<Form.Item
-					name="courseID"
-					label="Course"
+					name="value"
+					label="Value"
 					rules={[
 						{
 							required: true,
 						},
 					]}
 				>
-					<Select options={courseOptions} />
+					<Input />
 				</Form.Item>
 
 				<Form.Item {...tailLayout}>
 					<Button type="primary" htmlType="submit">
-						Save Course
+						Save Configuration
 					</Button>
 					<Button htmlType="button" onClick={onReset}>
 						Cancel
@@ -68,4 +60,4 @@ const RoundAddForm = () => {
 		</div>
 	);
 };
-export default RoundAddForm;
+export default ConfigurationAddForm;
