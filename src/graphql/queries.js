@@ -1,12 +1,43 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const syncConfigurations = /* GraphQL */ `
+  query SyncConfigurations(
+    $filter: ModelConfigurationFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncConfigurations(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        key
+        value
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
 export const getConfiguration = /* GraphQL */ `
   query GetConfiguration($id: ID!) {
     getConfiguration(id: $id) {
       id
       key
       value
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -23,10 +54,46 @@ export const listConfigurations = /* GraphQL */ `
         id
         key
         value
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
       nextToken
+      startedAt
+    }
+  }
+`;
+export const syncCourses = /* GraphQL */ `
+  query SyncCourses(
+    $filter: ModelCourseFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncCourses(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        name
+        shortName
+        holes {
+          nextToken
+          startedAt
+        }
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
     }
   }
 `;
@@ -44,11 +111,18 @@ export const getCourse = /* GraphQL */ `
           handicap
           yardage
           courseID
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         nextToken
+        startedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -67,11 +141,57 @@ export const listCourses = /* GraphQL */ `
         shortName
         holes {
           nextToken
+          startedAt
         }
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
       nextToken
+      startedAt
+    }
+  }
+`;
+export const syncHoles = /* GraphQL */ `
+  query SyncHoles(
+    $filter: ModelHoleFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncHoles(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        number
+        par
+        handicap
+        yardage
+        courseID
+        course {
+          id
+          name
+          shortName
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
     }
   }
 `;
@@ -90,10 +210,17 @@ export const getHole = /* GraphQL */ `
         shortName
         holes {
           nextToken
+          startedAt
         }
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -117,13 +244,63 @@ export const listHoles = /* GraphQL */ `
           id
           name
           shortName
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
       nextToken
+      startedAt
+    }
+  }
+`;
+export const syncGolfers = /* GraphQL */ `
+  query SyncGolfers(
+    $filter: ModelGolferFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncGolfers(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        email
+        firstName
+        lastName
+        team
+        handicap
+        rounds {
+          nextToken
+          startedAt
+        }
+        scores {
+          nextToken
+          startedAt
+        }
+        teeTimes {
+          nextToken
+          startedAt
+        }
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
     }
   }
 `;
@@ -141,10 +318,14 @@ export const getGolfer = /* GraphQL */ `
           id
           golferID
           roundID
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         nextToken
+        startedAt
       }
       scores {
         items {
@@ -153,21 +334,32 @@ export const getGolfer = /* GraphQL */ `
           roundID
           holeID
           score
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         nextToken
+        startedAt
       }
       teeTimes {
         items {
           id
           golferID
           teeTimeID
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         nextToken
+        startedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -189,17 +381,125 @@ export const listGolfers = /* GraphQL */ `
         handicap
         rounds {
           nextToken
+          startedAt
         }
         scores {
           nextToken
+          startedAt
         }
         teeTimes {
           nextToken
+          startedAt
         }
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
       nextToken
+      startedAt
+    }
+  }
+`;
+export const syncGolferRounds = /* GraphQL */ `
+  query SyncGolferRounds(
+    $filter: ModelGolferRoundFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncGolferRounds(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        golferID
+        roundID
+        golfer {
+          id
+          email
+          firstName
+          lastName
+          team
+          handicap
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+        round {
+          id
+          name
+          courseID
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncRounds = /* GraphQL */ `
+  query SyncRounds(
+    $filter: ModelRoundFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncRounds(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        name
+        courseID
+        course {
+          id
+          name
+          shortName
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+        golfers {
+          nextToken
+          startedAt
+        }
+        scores {
+          nextToken
+          startedAt
+        }
+        teeTimes {
+          nextToken
+          startedAt
+        }
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
     }
   }
 `;
@@ -215,7 +515,11 @@ export const getRound = /* GraphQL */ `
         shortName
         holes {
           nextToken
+          startedAt
         }
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
@@ -224,10 +528,14 @@ export const getRound = /* GraphQL */ `
           id
           golferID
           roundID
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         nextToken
+        startedAt
       }
       scores {
         items {
@@ -236,21 +544,32 @@ export const getRound = /* GraphQL */ `
           roundID
           holeID
           score
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         nextToken
+        startedAt
       }
       teeTimes {
         items {
           id
           name
           roundID
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         nextToken
+        startedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -271,22 +590,98 @@ export const listRounds = /* GraphQL */ `
           id
           name
           shortName
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         golfers {
           nextToken
+          startedAt
         }
         scores {
           nextToken
+          startedAt
         }
         teeTimes {
           nextToken
+          startedAt
         }
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
       nextToken
+      startedAt
+    }
+  }
+`;
+export const syncScores = /* GraphQL */ `
+  query SyncScores(
+    $filter: ModelScoreFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncScores(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        golferID
+        golfer {
+          id
+          email
+          firstName
+          lastName
+          team
+          handicap
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+        roundID
+        round {
+          id
+          name
+          courseID
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+        holeID
+        hole {
+          id
+          number
+          par
+          handicap
+          yardage
+          courseID
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+        score
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
     }
   }
 `;
@@ -304,13 +699,19 @@ export const getScore = /* GraphQL */ `
         handicap
         rounds {
           nextToken
+          startedAt
         }
         scores {
           nextToken
+          startedAt
         }
         teeTimes {
           nextToken
+          startedAt
         }
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
@@ -323,18 +724,27 @@ export const getScore = /* GraphQL */ `
           id
           name
           shortName
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         golfers {
           nextToken
+          startedAt
         }
         scores {
           nextToken
+          startedAt
         }
         teeTimes {
           nextToken
+          startedAt
         }
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
@@ -350,13 +760,22 @@ export const getScore = /* GraphQL */ `
           id
           name
           shortName
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
       score
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -379,6 +798,9 @@ export const listScores = /* GraphQL */ `
           lastName
           team
           handicap
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
@@ -387,6 +809,9 @@ export const listScores = /* GraphQL */ `
           id
           name
           courseID
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
@@ -398,14 +823,114 @@ export const listScores = /* GraphQL */ `
           handicap
           yardage
           courseID
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         score
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
       nextToken
+      startedAt
+    }
+  }
+`;
+export const syncTeeTimeGolfers = /* GraphQL */ `
+  query SyncTeeTimeGolfers(
+    $filter: ModelTeeTimeGolferFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncTeeTimeGolfers(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        golferID
+        teeTimeID
+        golfer {
+          id
+          email
+          firstName
+          lastName
+          team
+          handicap
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+        teeTime {
+          id
+          name
+          roundID
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncTeeTimes = /* GraphQL */ `
+  query SyncTeeTimes(
+    $filter: ModelTeeTimeFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncTeeTimes(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        name
+        roundID
+        round {
+          id
+          name
+          courseID
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+        golfers {
+          nextToken
+          startedAt
+        }
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
     }
   }
 `;
@@ -423,18 +948,27 @@ export const getTeeTime = /* GraphQL */ `
           id
           name
           shortName
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         golfers {
           nextToken
+          startedAt
         }
         scores {
           nextToken
+          startedAt
         }
         teeTimes {
           nextToken
+          startedAt
         }
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
@@ -443,11 +977,18 @@ export const getTeeTime = /* GraphQL */ `
           id
           golferID
           teeTimeID
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         nextToken
+        startedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -468,16 +1009,24 @@ export const listTeeTimes = /* GraphQL */ `
           id
           name
           courseID
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         golfers {
           nextToken
+          startedAt
         }
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
       nextToken
+      startedAt
     }
   }
 `;

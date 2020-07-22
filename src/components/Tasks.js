@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { Select, Tabs, Card, Button, Row, Col } from "antd";
+import { Select, Tabs, Card, Row, Col } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
 
 import {
@@ -13,7 +13,6 @@ import MainLayout from "./MainLayout";
 import { useMainState, useMainDispatch } from "../context/mainContext";
 
 const { TabPane } = Tabs;
-const { Option } = Select;
 
 const lookUpCourseName = (courses, courseID) => {
 	const courseData = courses.find((course) => course.id === courseID);

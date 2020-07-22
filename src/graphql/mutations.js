@@ -10,6 +10,9 @@ export const createConfiguration = /* GraphQL */ `
       id
       key
       value
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -24,6 +27,9 @@ export const updateConfiguration = /* GraphQL */ `
       id
       key
       value
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -38,6 +44,9 @@ export const deleteConfiguration = /* GraphQL */ `
       id
       key
       value
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -60,11 +69,18 @@ export const createCourse = /* GraphQL */ `
           handicap
           yardage
           courseID
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         nextToken
+        startedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -87,11 +103,18 @@ export const updateCourse = /* GraphQL */ `
           handicap
           yardage
           courseID
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         nextToken
+        startedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -114,11 +137,18 @@ export const deleteCourse = /* GraphQL */ `
           handicap
           yardage
           courseID
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         nextToken
+        startedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -142,10 +172,17 @@ export const createHole = /* GraphQL */ `
         shortName
         holes {
           nextToken
+          startedAt
         }
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -169,10 +206,17 @@ export const updateHole = /* GraphQL */ `
         shortName
         holes {
           nextToken
+          startedAt
         }
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -196,10 +240,17 @@ export const deleteHole = /* GraphQL */ `
         shortName
         holes {
           nextToken
+          startedAt
         }
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -222,10 +273,14 @@ export const createGolfer = /* GraphQL */ `
           id
           golferID
           roundID
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         nextToken
+        startedAt
       }
       scores {
         items {
@@ -234,21 +289,32 @@ export const createGolfer = /* GraphQL */ `
           roundID
           holeID
           score
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         nextToken
+        startedAt
       }
       teeTimes {
         items {
           id
           golferID
           teeTimeID
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         nextToken
+        startedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -271,10 +337,14 @@ export const updateGolfer = /* GraphQL */ `
           id
           golferID
           roundID
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         nextToken
+        startedAt
       }
       scores {
         items {
@@ -283,21 +353,32 @@ export const updateGolfer = /* GraphQL */ `
           roundID
           holeID
           score
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         nextToken
+        startedAt
       }
       teeTimes {
         items {
           id
           golferID
           teeTimeID
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         nextToken
+        startedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -320,10 +401,14 @@ export const deleteGolfer = /* GraphQL */ `
           id
           golferID
           roundID
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         nextToken
+        startedAt
       }
       scores {
         items {
@@ -332,21 +417,32 @@ export const deleteGolfer = /* GraphQL */ `
           roundID
           holeID
           score
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         nextToken
+        startedAt
       }
       teeTimes {
         items {
           id
           golferID
           teeTimeID
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         nextToken
+        startedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -370,13 +466,19 @@ export const createGolferRound = /* GraphQL */ `
         handicap
         rounds {
           nextToken
+          startedAt
         }
         scores {
           nextToken
+          startedAt
         }
         teeTimes {
           nextToken
+          startedAt
         }
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
@@ -388,21 +490,33 @@ export const createGolferRound = /* GraphQL */ `
           id
           name
           shortName
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         golfers {
           nextToken
+          startedAt
         }
         scores {
           nextToken
+          startedAt
         }
         teeTimes {
           nextToken
+          startedAt
         }
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -426,13 +540,19 @@ export const updateGolferRound = /* GraphQL */ `
         handicap
         rounds {
           nextToken
+          startedAt
         }
         scores {
           nextToken
+          startedAt
         }
         teeTimes {
           nextToken
+          startedAt
         }
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
@@ -444,21 +564,33 @@ export const updateGolferRound = /* GraphQL */ `
           id
           name
           shortName
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         golfers {
           nextToken
+          startedAt
         }
         scores {
           nextToken
+          startedAt
         }
         teeTimes {
           nextToken
+          startedAt
         }
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -482,13 +614,19 @@ export const deleteGolferRound = /* GraphQL */ `
         handicap
         rounds {
           nextToken
+          startedAt
         }
         scores {
           nextToken
+          startedAt
         }
         teeTimes {
           nextToken
+          startedAt
         }
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
@@ -500,21 +638,33 @@ export const deleteGolferRound = /* GraphQL */ `
           id
           name
           shortName
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         golfers {
           nextToken
+          startedAt
         }
         scores {
           nextToken
+          startedAt
         }
         teeTimes {
           nextToken
+          startedAt
         }
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -535,7 +685,11 @@ export const createRound = /* GraphQL */ `
         shortName
         holes {
           nextToken
+          startedAt
         }
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
@@ -544,10 +698,14 @@ export const createRound = /* GraphQL */ `
           id
           golferID
           roundID
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         nextToken
+        startedAt
       }
       scores {
         items {
@@ -556,21 +714,32 @@ export const createRound = /* GraphQL */ `
           roundID
           holeID
           score
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         nextToken
+        startedAt
       }
       teeTimes {
         items {
           id
           name
           roundID
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         nextToken
+        startedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -591,7 +760,11 @@ export const updateRound = /* GraphQL */ `
         shortName
         holes {
           nextToken
+          startedAt
         }
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
@@ -600,10 +773,14 @@ export const updateRound = /* GraphQL */ `
           id
           golferID
           roundID
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         nextToken
+        startedAt
       }
       scores {
         items {
@@ -612,21 +789,32 @@ export const updateRound = /* GraphQL */ `
           roundID
           holeID
           score
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         nextToken
+        startedAt
       }
       teeTimes {
         items {
           id
           name
           roundID
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         nextToken
+        startedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -647,7 +835,11 @@ export const deleteRound = /* GraphQL */ `
         shortName
         holes {
           nextToken
+          startedAt
         }
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
@@ -656,10 +848,14 @@ export const deleteRound = /* GraphQL */ `
           id
           golferID
           roundID
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         nextToken
+        startedAt
       }
       scores {
         items {
@@ -668,21 +864,32 @@ export const deleteRound = /* GraphQL */ `
           roundID
           holeID
           score
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         nextToken
+        startedAt
       }
       teeTimes {
         items {
           id
           name
           roundID
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         nextToken
+        startedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -705,13 +912,19 @@ export const createScore = /* GraphQL */ `
         handicap
         rounds {
           nextToken
+          startedAt
         }
         scores {
           nextToken
+          startedAt
         }
         teeTimes {
           nextToken
+          startedAt
         }
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
@@ -724,18 +937,27 @@ export const createScore = /* GraphQL */ `
           id
           name
           shortName
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         golfers {
           nextToken
+          startedAt
         }
         scores {
           nextToken
+          startedAt
         }
         teeTimes {
           nextToken
+          startedAt
         }
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
@@ -751,13 +973,22 @@ export const createScore = /* GraphQL */ `
           id
           name
           shortName
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
       score
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -780,13 +1011,19 @@ export const updateScore = /* GraphQL */ `
         handicap
         rounds {
           nextToken
+          startedAt
         }
         scores {
           nextToken
+          startedAt
         }
         teeTimes {
           nextToken
+          startedAt
         }
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
@@ -799,18 +1036,27 @@ export const updateScore = /* GraphQL */ `
           id
           name
           shortName
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         golfers {
           nextToken
+          startedAt
         }
         scores {
           nextToken
+          startedAt
         }
         teeTimes {
           nextToken
+          startedAt
         }
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
@@ -826,13 +1072,22 @@ export const updateScore = /* GraphQL */ `
           id
           name
           shortName
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
       score
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -855,13 +1110,19 @@ export const deleteScore = /* GraphQL */ `
         handicap
         rounds {
           nextToken
+          startedAt
         }
         scores {
           nextToken
+          startedAt
         }
         teeTimes {
           nextToken
+          startedAt
         }
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
@@ -874,18 +1135,27 @@ export const deleteScore = /* GraphQL */ `
           id
           name
           shortName
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         golfers {
           nextToken
+          startedAt
         }
         scores {
           nextToken
+          startedAt
         }
         teeTimes {
           nextToken
+          startedAt
         }
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
@@ -901,13 +1171,22 @@ export const deleteScore = /* GraphQL */ `
           id
           name
           shortName
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
       score
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -931,13 +1210,19 @@ export const createTeeTimeGolfer = /* GraphQL */ `
         handicap
         rounds {
           nextToken
+          startedAt
         }
         scores {
           nextToken
+          startedAt
         }
         teeTimes {
           nextToken
+          startedAt
         }
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
@@ -949,15 +1234,25 @@ export const createTeeTimeGolfer = /* GraphQL */ `
           id
           name
           courseID
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         golfers {
           nextToken
+          startedAt
         }
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -981,13 +1276,19 @@ export const updateTeeTimeGolfer = /* GraphQL */ `
         handicap
         rounds {
           nextToken
+          startedAt
         }
         scores {
           nextToken
+          startedAt
         }
         teeTimes {
           nextToken
+          startedAt
         }
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
@@ -999,15 +1300,25 @@ export const updateTeeTimeGolfer = /* GraphQL */ `
           id
           name
           courseID
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         golfers {
           nextToken
+          startedAt
         }
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -1031,13 +1342,19 @@ export const deleteTeeTimeGolfer = /* GraphQL */ `
         handicap
         rounds {
           nextToken
+          startedAt
         }
         scores {
           nextToken
+          startedAt
         }
         teeTimes {
           nextToken
+          startedAt
         }
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
@@ -1049,15 +1366,25 @@ export const deleteTeeTimeGolfer = /* GraphQL */ `
           id
           name
           courseID
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         golfers {
           nextToken
+          startedAt
         }
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -1080,18 +1407,27 @@ export const createTeeTime = /* GraphQL */ `
           id
           name
           shortName
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         golfers {
           nextToken
+          startedAt
         }
         scores {
           nextToken
+          startedAt
         }
         teeTimes {
           nextToken
+          startedAt
         }
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
@@ -1100,11 +1436,18 @@ export const createTeeTime = /* GraphQL */ `
           id
           golferID
           teeTimeID
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         nextToken
+        startedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -1127,18 +1470,27 @@ export const updateTeeTime = /* GraphQL */ `
           id
           name
           shortName
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         golfers {
           nextToken
+          startedAt
         }
         scores {
           nextToken
+          startedAt
         }
         teeTimes {
           nextToken
+          startedAt
         }
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
@@ -1147,11 +1499,18 @@ export const updateTeeTime = /* GraphQL */ `
           id
           golferID
           teeTimeID
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         nextToken
+        startedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -1174,18 +1533,27 @@ export const deleteTeeTime = /* GraphQL */ `
           id
           name
           shortName
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         golfers {
           nextToken
+          startedAt
         }
         scores {
           nextToken
+          startedAt
         }
         teeTimes {
           nextToken
+          startedAt
         }
+        _version
+        _deleted
+        _lastChangedAt
         createdAt
         updatedAt
       }
@@ -1194,11 +1562,18 @@ export const deleteTeeTime = /* GraphQL */ `
           id
           golferID
           teeTimeID
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         nextToken
+        startedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
