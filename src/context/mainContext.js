@@ -1,6 +1,9 @@
 import React, { useReducer, createContext, useEffect } from "react";
 import { API, graphqlOperation } from "aws-amplify";
 
+import { DataStore, Predicates } from "@aws-amplify/datastore";
+import { Configuration } from "../models";
+
 //import Amplify from "@aws-amplify/core";
 // import { DataStore, Predicates } from "@aws-amplify/datastore";
 // import { Round } from "./models";
@@ -110,6 +113,8 @@ const mainReducer = (state, action) => {
 				...updatedConfigState[activeRoundIndex],
 				value: action.roundID,
 			};
+
+			console.log(updatedConfigState[activeRoundIndex]);
 			updateConfiguration(updatedConfigState[activeRoundIndex]);
 			return { ...state, configurations: updatedConfigState };
 		case "UPDATE_GOLFER_HDCP":
@@ -141,10 +146,12 @@ const mainReducer = (state, action) => {
 
 async function fetchInitialState() {
 	try {
-		const configData = await API.graphql(
-			graphqlOperation(listConfigurations)
-		);
-		const configurations = configData.data.listConfigurations.items;
+		const configurations = await DataStore.query(Configuration);
+
+		// const configData = await API.graphql(
+		// 	graphqlOperation(listConfigurations)
+		// );
+		// const configurations = configData.data.listConfigurations.items;
 
 		const courseData = await API.graphql(graphqlOperation(listCourses));
 		const courses = courseData.data.listCourses.items;

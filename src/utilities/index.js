@@ -1,4 +1,7 @@
 import { Auth, API, graphqlOperation } from "aws-amplify";
+import { DataStore, Predicates } from "@aws-amplify/datastore";
+import { Configuration } from "../models";
+
 import {
 	createConfiguration,
 	createGolfer,
@@ -65,6 +68,7 @@ export const deleteGolferTeeTime = async (golferTeeTimeId) => {
 			graphqlOperation(gqlDeleteGolferTeeTime, {
 				input: {
 					id: golferTeeTimeId,
+					_version: 1,
 				},
 			})
 		);
@@ -171,15 +175,24 @@ export const saveRound = async (values) => {
 
 export const updateConfiguration = async (config) => {
 	try {
-		await API.graphql(
-			graphqlOperation(gqlUpdateConfiguration, {
-				input: {
-					id: config.id,
-					value: config.value,
-				},
+		const original = await DataStore.query(Configuration, config.id);
+
+		await DataStore.save(
+			Configuration.copyOf(original, (updated) => {
+				updated.value = config.value;
 			})
 		);
-		message.success(`${config.key} updated`);
+
+		// let result = await API.graphql(
+		// 	graphqlOperation(gqlUpdateConfiguration, {
+		// 		input: {
+		// 			id: config.id,
+		// 			value: config.value,
+		// 			_version: config._version,
+		// 		},
+		// 	})
+		// );
+		message.success(`${config.key} updated to ${config.value}`);
 	} catch (error) {
 		console.log(error);
 		message.error(`${config.key} not updated`);

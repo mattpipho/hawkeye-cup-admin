@@ -21,9 +21,8 @@ const lookUpCourseName = (courses, courseID) => {
 };
 
 const GolferDisplay = ({ golfer, deleteTeeTimeGolfer }) => {
-	console.log(golfer.team);
 	return (
-		<div className="full-width">
+		<div className="full-width float-left">
 			<div
 				className={
 					"tee-time-golfer " +
@@ -113,8 +112,12 @@ const Tasks = () => {
 												// style={{ width: 200 }}
 												size="small"
 											>
-												{teeTime.golfers.items.map(
-													(item) => (
+												{teeTime.golfers.items
+													.filter(
+														(a) =>
+															a._deleted !== true
+													)
+													.map((item) => (
 														<GolferDisplay
 															key={item.id}
 															golfer={item.golfer}
@@ -126,8 +129,7 @@ const Tasks = () => {
 																)
 															}
 														/>
-													)
-												)}
+													))}
 												<div className="add-golfer-select-wrapper">
 													<Select
 														value="Add Golfer"

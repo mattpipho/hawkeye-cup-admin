@@ -333,6 +333,7 @@ export const getGolfer = /* GraphQL */ `
           golferID
           roundID
           holeID
+          teeTimeID
           score
           _version
           _deleted
@@ -543,6 +544,7 @@ export const getRound = /* GraphQL */ `
           golferID
           roundID
           holeID
+          teeTimeID
           score
           _version
           _deleted
@@ -673,6 +675,17 @@ export const syncScores = /* GraphQL */ `
           createdAt
           updatedAt
         }
+        teeTimeID
+        teeTime {
+          id
+          name
+          roundID
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
         score
         _version
         _deleted
@@ -772,6 +785,31 @@ export const getScore = /* GraphQL */ `
         createdAt
         updatedAt
       }
+      teeTimeID
+      teeTime {
+        id
+        name
+        roundID
+        round {
+          id
+          name
+          courseID
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+        golfers {
+          nextToken
+          startedAt
+        }
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
       score
       _version
       _deleted
@@ -823,6 +861,17 @@ export const listScores = /* GraphQL */ `
           handicap
           yardage
           courseID
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+        teeTimeID
+        teeTime {
+          id
+          name
+          roundID
           _version
           _deleted
           _lastChangedAt
@@ -1019,6 +1068,85 @@ export const listTeeTimes = /* GraphQL */ `
           nextToken
           startedAt
         }
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const scoresByTeeTime = /* GraphQL */ `
+  query ScoresByTeeTime(
+    $teeTimeID: ID
+    $sortDirection: ModelSortDirection
+    $filter: ModelScoreFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    scoresByTeeTime(
+      teeTimeID: $teeTimeID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        golferID
+        golfer {
+          id
+          email
+          firstName
+          lastName
+          team
+          handicap
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+        roundID
+        round {
+          id
+          name
+          courseID
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+        holeID
+        hole {
+          id
+          number
+          par
+          handicap
+          yardage
+          courseID
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+        teeTimeID
+        teeTime {
+          id
+          name
+          roundID
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+        score
         _version
         _deleted
         _lastChangedAt

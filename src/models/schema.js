@@ -1,5 +1,39 @@
 export const schema = {
     "models": {
+        "Configuration": {
+            "name": "Configuration",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "key": {
+                    "name": "key",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "value": {
+                    "name": "value",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                }
+            },
+            "syncable": true,
+            "pluralName": "Configurations",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                }
+            ]
+        },
         "Course": {
             "name": "Course",
             "fields": {
@@ -180,6 +214,19 @@ export const schema = {
                     "isArray": true,
                     "type": {
                         "model": "Score"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": "golfer"
+                    }
+                },
+                "teeTimes": {
+                    "name": "teeTimes",
+                    "isArray": true,
+                    "type": {
+                        "model": "TeeTimeGolfer"
                     },
                     "isRequired": false,
                     "attributes": [],
@@ -485,7 +532,7 @@ export const schema = {
                     "attributes": [],
                     "association": {
                         "connectionType": "HAS_MANY",
-                        "associatedWith": "golfer"
+                        "associatedWith": "teeTime"
                     }
                 }
             },
@@ -556,6 +603,16 @@ export const schema = {
                 {
                     "type": "key",
                     "properties": {
+                        "name": "byGolferTT",
+                        "fields": [
+                            "golferID",
+                            "teeTimeID"
+                        ]
+                    }
+                },
+                {
+                    "type": "key",
+                    "properties": {
                         "name": "byGolfer",
                         "fields": [
                             "golferID",
@@ -578,5 +635,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "ba4f607c301413958b5518d0c0208804"
+    "version": "4b0f03ba4b6f2a7b28306047dc4179ff"
 };

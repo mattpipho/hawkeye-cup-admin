@@ -4,6 +4,14 @@ import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplif
 
 
 
+export declare class Configuration {
+  readonly id: string;
+  readonly key: string;
+  readonly value: string;
+  constructor(init: ModelInit<Configuration>);
+  static copyOf(source: Configuration, mutator: (draft: MutableModel<Configuration>) => MutableModel<Configuration> | void): Configuration;
+}
+
 export declare class Course {
   readonly id: string;
   readonly name: string;
@@ -33,6 +41,7 @@ export declare class Golfer {
   readonly handicap?: number;
   readonly rounds?: GolferRound[];
   readonly scores?: Score[];
+  readonly teeTimes?: TeeTimeGolfer[];
   constructor(init: ModelInit<Golfer>);
   static copyOf(source: Golfer, mutator: (draft: MutableModel<Golfer>) => MutableModel<Golfer> | void): Golfer;
 }

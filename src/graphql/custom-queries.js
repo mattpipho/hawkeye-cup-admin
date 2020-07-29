@@ -17,10 +17,14 @@ export const listCourses = /* GraphQL */ `
 						handicap
 					}
 				}
+				_version
+				_deleted
+				_lastChangedAt
 				createdAt
 				updatedAt
 			}
 			nextToken
+			startedAt
 		}
 	}
 `;
@@ -60,6 +64,7 @@ export const listRounds = /* GraphQL */ `
 									lastName
 									team
 								}
+								_deleted
 							}
 						}
 					}

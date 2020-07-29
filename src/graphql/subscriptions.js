@@ -258,6 +258,7 @@ export const onCreateGolfer = /* GraphQL */ `
           golferID
           roundID
           holeID
+          teeTimeID
           score
           _version
           _deleted
@@ -319,6 +320,7 @@ export const onUpdateGolfer = /* GraphQL */ `
           golferID
           roundID
           holeID
+          teeTimeID
           score
           _version
           _deleted
@@ -380,6 +382,7 @@ export const onDeleteGolfer = /* GraphQL */ `
           golferID
           roundID
           holeID
+          teeTimeID
           score
           _version
           _deleted
@@ -665,6 +668,7 @@ export const onCreateRound = /* GraphQL */ `
           golferID
           roundID
           holeID
+          teeTimeID
           score
           _version
           _deleted
@@ -737,6 +741,7 @@ export const onUpdateRound = /* GraphQL */ `
           golferID
           roundID
           holeID
+          teeTimeID
           score
           _version
           _deleted
@@ -809,6 +814,7 @@ export const onDeleteRound = /* GraphQL */ `
           golferID
           roundID
           holeID
+          teeTimeID
           score
           _version
           _deleted
@@ -928,6 +934,31 @@ export const onCreateScore = /* GraphQL */ `
         createdAt
         updatedAt
       }
+      teeTimeID
+      teeTime {
+        id
+        name
+        roundID
+        round {
+          id
+          name
+          courseID
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+        golfers {
+          nextToken
+          startedAt
+        }
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
       score
       _version
       _deleted
@@ -1024,6 +1055,31 @@ export const onUpdateScore = /* GraphQL */ `
         createdAt
         updatedAt
       }
+      teeTimeID
+      teeTime {
+        id
+        name
+        roundID
+        round {
+          id
+          name
+          courseID
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+        golfers {
+          nextToken
+          startedAt
+        }
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
       score
       _version
       _deleted
@@ -1113,6 +1169,31 @@ export const onDeleteScore = /* GraphQL */ `
           _lastChangedAt
           createdAt
           updatedAt
+        }
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      teeTimeID
+      teeTime {
+        id
+        name
+        roundID
+        round {
+          id
+          name
+          courseID
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+        golfers {
+          nextToken
+          startedAt
         }
         _version
         _deleted

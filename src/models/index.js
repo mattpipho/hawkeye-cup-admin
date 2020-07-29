@@ -4,9 +4,10 @@ import { schema } from './schema';
 
 
 
-const { Course, Hole, Golfer, GolferRound, Round, Score, TeeTime, TeeTimeGolfer } = initSchema(schema);
+const { Configuration, Course, Hole, Golfer, GolferRound, Round, Score, TeeTime, TeeTimeGolfer } = initSchema(schema);
 
 export {
+  Configuration,
   Course,
   Hole,
   Golfer,

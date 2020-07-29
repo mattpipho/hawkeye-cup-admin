@@ -57,7 +57,12 @@ type Round @model @key(name: "byCourse", fields: ["courseID"]) {
 type Score
 	@model
 	@key(name: "byGolferScore", fields: ["golferID"])
-	@key(name: "byRoundScore", fields: ["roundID"]) {
+	@key(name: "byRoundScore", fields: ["roundID"])
+	@key(
+		name: "byTeeTime"
+		fields: ["teeTimeID"]
+		queryField: "scoresByTeeTime"
+	) {
 	id: ID!
 	golferID: ID!
 	golfer: Golfer! @connection(fields: ["golferID"])
@@ -65,6 +70,8 @@ type Score
 	round: Round @connection(fields: ["roundID"])
 	holeID: ID!
 	hole: Hole @connection(fields: ["holeID"])
+	teeTimeID: ID!
+	teeTime: TeeTime @connection(fields: ["teeTimeID"])
 	score: Int!
 }
 
