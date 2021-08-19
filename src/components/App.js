@@ -11,6 +11,7 @@ const MaintainCourses = lazy(() => import("./MaintainCourses"));
 const MaintainGolfers = lazy(() => import("./MaintainGolfers"));
 const MaintainRounds = lazy(() => import("./MaintainRounds"));
 const Tasks = lazy(() => import("./Tasks"));
+const ScorecardPage = lazy(() => import("./ScorecardPage"));
 const MaintainConfigurations = lazy(() =>
 	import("./configurations/MaintainConfigurations")
 );
@@ -40,6 +41,9 @@ function App() {
 						</Route>
 						<Route exact path="/tasks">
 							<Tasks />
+						</Route>
+						<Route exact path="/scorecard">
+							<ScorecardPage />
 						</Route>
 					</Switch>
 				</Router>

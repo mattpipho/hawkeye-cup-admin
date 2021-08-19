@@ -21,6 +21,9 @@ const Navbar = () => {
 				<Menu.Item key="rounds">
 					<Link to="/rounds">Rounds</Link>
 				</Menu.Item>
+				<Menu.Item key="scorecard">
+					<Link to="/scorecard">Scorecard</Link>
+				</Menu.Item>
 			</Menu>
 		</div>
 	);

@@ -1,7 +1,7 @@
 import React, { useReducer, createContext, useEffect } from "react";
 import { API, graphqlOperation } from "aws-amplify";
 
-import { DataStore, Predicates } from "@aws-amplify/datastore";
+import { DataStore } from "@aws-amplify/datastore";
 import { Configuration } from "../models";
 
 //import Amplify from "@aws-amplify/core";
@@ -9,7 +9,7 @@ import { Configuration } from "../models";
 // import { Round } from "./models";
 
 import { listCourses, listRounds } from "../graphql/custom-queries";
-import { listGolfers, listConfigurations } from "../graphql/queries";
+import { listGolfers, listScores } from "../graphql/queries";
 
 import { remoteRefresh, refreshRounds } from "../actions";
 import {
@@ -146,28 +146,55 @@ const mainReducer = (state, action) => {
 
 async function fetchInitialState() {
 	try {
-		const configurations = await DataStore.query(Configuration);
+		//const configurations = await DataStore.query(Configuration);
 
 		// const configData = await API.graphql(
 		// 	graphqlOperation(listConfigurations)
 		// );
 		// const configurations = configData.data.listConfigurations.items;
 
-		const courseData = await API.graphql(graphqlOperation(listCourses));
+		console.time("dataCalls");
+
+		// const courseData = await API.graphql(graphqlOperation(listCourses));
+		// const courses = courseData.data.listCourses.items;
+
+		// const userData = await API.graphql(graphqlOperation(listGolfers));
+		// const golfers = userData.data.listGolfers.items;
+
+		// const roundData = await API.graphql(graphqlOperation(listRounds));
+		// const rounds = roundData.data.listRounds.items;
+
+		// const scoreData = await API.graphql(graphqlOperation(listScores));
+		// const scores = scoreData.data.listScores.items;
+
+		let [
+			configurations,
+			courseData,
+			userData,
+			roundData,
+			scoreData,
+		] = await Promise.all([
+			DataStore.query(Configuration),
+			API.graphql(graphqlOperation(listCourses)),
+			API.graphql(graphqlOperation(listGolfers)),
+			API.graphql(graphqlOperation(listRounds)),
+			API.graphql(graphqlOperation(listScores)),
+		]);
+
 		const courses = courseData.data.listCourses.items;
-
-		const userData = await API.graphql(graphqlOperation(listGolfers));
 		const golfers = userData.data.listGolfers.items;
-
-		const roundData = await API.graphql(graphqlOperation(listRounds));
 		const rounds = roundData.data.listRounds.items;
-		console.log(rounds);
+		const scores = scoreData.data.listScores.items;
+
+		console.timeEnd("dataCalls");
+
 		return {
 			loading: false,
 			configurations: configurations,
 			courses: courses,
 			golfers: golfers,
 			rounds: rounds,
+			scores: scores,
 			errors: null,
 		};
 	} catch (error) {

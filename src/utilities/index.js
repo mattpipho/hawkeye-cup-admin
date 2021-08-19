@@ -1,5 +1,5 @@
 import { Auth, API, graphqlOperation } from "aws-amplify";
-import { DataStore, Predicates } from "@aws-amplify/datastore";
+import { DataStore } from "@aws-amplify/datastore";
 import { Configuration } from "../models";
 
 import {
@@ -11,7 +11,7 @@ import {
 	deleteGolfer as gqlDeleteGolfer,
 	deleteTeeTimeGolfer as gqlDeleteGolferTeeTime,
 	deleteRound as gqlDeleteRound,
-	updateConfiguration as gqlUpdateConfiguration,
+	//updateConfiguration as gqlUpdateConfiguration,
 	updateGolfer as gqlUpdateGolfer,
 	createTeeTime as gqlCreateTeeTime,
 } from "../graphql/mutations";
