@@ -107,6 +107,14 @@
 .float-left {
 	float: left;
 }
+.score-cell {
+	border: 1px solid #777;
+}
+.scorecardTable td {
+	border: 1px solid #ccc;
+	width: 70px;
+	height: 2.5em;
+}
 @media only screen and (max-width: 550px) {
 	.ant-layout-content {
 		padding: 0px;

@@ -6,6 +6,7 @@ import {
 	createConfiguration,
 	createGolfer,
 	createRound,
+	createScore,
 	createTeeTimeGolfer,
 	deleteConfiguration as gqlDeleteConfiguration,
 	deleteGolfer as gqlDeleteGolfer,
@@ -13,8 +14,11 @@ import {
 	deleteRound as gqlDeleteRound,
 	//updateConfiguration as gqlUpdateConfiguration,
 	updateGolfer as gqlUpdateGolfer,
+	updateScore,
 	createTeeTime as gqlCreateTeeTime,
 } from "../graphql/mutations";
+
+import { listScores } from "../graphql/queries";
 import { message } from "antd";
 
 export const addTeeTimeGolfer = async (teeTimeID, golferID) => {
@@ -170,6 +174,49 @@ export const saveRound = async (values) => {
 	} catch (error) {
 		console.log(error);
 		message.error("Round Not Added");
+	}
+};
+
+export const saveScore = async (score) => {
+	try {
+		const scoreInput = {
+			golferID: score.golferID,
+			roundID: score.roundID,
+			teeTimeID: score.teeTimeID,
+			holeID: score.holeID,
+			score: score.score,
+		};
+
+		const scoreFilter = {
+			golferID: { eq: score.golferID },
+			holeID: { eq: score.holeID },
+			roundID: { eq: score.roundID },
+		};
+
+		const result = await API.graphql(
+			graphqlOperation(listScores, {
+				filter: scoreFilter,
+			})
+		);
+
+		if (result.data.listScores.items.length === 0) {
+			await API.graphql(
+				graphqlOperation(createScore, { input: scoreInput })
+			);
+		} else {
+			const previousScoreItem = result.data.listScores.items[0];
+			const updateItem = {
+				id: previousScoreItem.id,
+				_version: previousScoreItem._version,
+				score: score.score,
+			};
+			await API.graphql(
+				graphqlOperation(updateScore, { input: updateItem })
+			);
+		}
+	} catch (error) {
+		console.log(error);
+		message.error("Score not saved");
 	}
 };
 

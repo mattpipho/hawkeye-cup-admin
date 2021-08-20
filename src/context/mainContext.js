@@ -21,6 +21,7 @@ import {
 	saveConfiguration,
 	saveGolfer,
 	saveRound,
+	//saveScore,
 	updateConfiguration,
 	updateGolfer,
 } from "../utilities";
@@ -146,27 +147,6 @@ const mainReducer = (state, action) => {
 
 async function fetchInitialState() {
 	try {
-		//const configurations = await DataStore.query(Configuration);
-
-		// const configData = await API.graphql(
-		// 	graphqlOperation(listConfigurations)
-		// );
-		// const configurations = configData.data.listConfigurations.items;
-
-		console.time("dataCalls");
-
-		// const courseData = await API.graphql(graphqlOperation(listCourses));
-		// const courses = courseData.data.listCourses.items;
-
-		// const userData = await API.graphql(graphqlOperation(listGolfers));
-		// const golfers = userData.data.listGolfers.items;
-
-		// const roundData = await API.graphql(graphqlOperation(listRounds));
-		// const rounds = roundData.data.listRounds.items;
-
-		// const scoreData = await API.graphql(graphqlOperation(listScores));
-		// const scores = scoreData.data.listScores.items;
-
 		let [
 			configurations,
 			courseData,
@@ -185,8 +165,6 @@ async function fetchInitialState() {
 		const golfers = userData.data.listGolfers.items;
 		const rounds = roundData.data.listRounds.items;
 		const scores = scoreData.data.listScores.items;
-
-		console.timeEnd("dataCalls");
 
 		return {
 			loading: false,

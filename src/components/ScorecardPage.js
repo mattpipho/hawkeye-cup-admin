@@ -4,6 +4,8 @@ import MainLayout from "./MainLayout";
 import Auth from "@aws-amplify/auth";
 import Scorecard from "./Scorecard";
 
+import { Row, Col } from "antd";
+
 // import { Table, Button, Modal } from "antd";
 import { useMainState } from "../context/mainContext";
 
@@ -13,8 +15,6 @@ const ScorecardPage = () => {
 	const [round, setRound] = useState();
 	const [golfersInGroup, setGolfersInGroup] = useState();
 	const [course, setCourse] = useState();
-	const [scores, setScores] = useState();
-	const [holeToEdit, setHoleToEdit] = useState();
 
 	const activeRoundID = {
 		...state.configurations.find((config) => config.key === "ACTIVE_ROUND"),
@@ -62,13 +62,16 @@ const ScorecardPage = () => {
 
 	return (
 		<MainLayout>
-			<Scorecard
-				round={round}
-				course={course}
-				golfers={golfersInGroup}
-				holeToEdit={holeToEdit}
-				setHoleToEdit={setHoleToEdit}
-			/>
+			<Row justify="center">
+				<Col span={12}>
+					<Scorecard
+						round={round}
+						course={course}
+						golfers={golfersInGroup}
+						scores={state.scores}
+					/>
+				</Col>
+			</Row>
 		</MainLayout>
 	);
 };
