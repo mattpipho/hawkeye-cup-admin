@@ -27,7 +27,7 @@ const RoundHeading = ({ round }) => {
 };
 const ScorecardHeader = ({ golfers }) => {
 	const listGolfers = golfers.map((golfer) => (
-		<th key={golfer.id}>{golfer.lastName.substring(0, 7)}</th>
+		<th key={golfer.id}>{golfer.lastName.substring(0, 5)}</th>
 	));
 	return (
 		<thead>

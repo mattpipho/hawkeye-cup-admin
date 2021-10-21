@@ -63,7 +63,7 @@ const ScorecardPage = () => {
 	return (
 		<MainLayout>
 			<Row justify="center">
-				<Col span={12}>
+				<Col span={24}>
 					<Scorecard
 						round={round}
 						course={course}
