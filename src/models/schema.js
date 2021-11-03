@@ -66,6 +66,7 @@ export const schema = {
                     },
                     "isRequired": false,
                     "attributes": [],
+                    "isArrayNullable": true,
                     "association": {
                         "connectionType": "HAS_MANY",
                         "associatedWith": "course"
@@ -204,6 +205,7 @@ export const schema = {
                     },
                     "isRequired": false,
                     "attributes": [],
+                    "isArrayNullable": true,
                     "association": {
                         "connectionType": "HAS_MANY",
                         "associatedWith": "golfer"
@@ -217,6 +219,7 @@ export const schema = {
                     },
                     "isRequired": false,
                     "attributes": [],
+                    "isArrayNullable": true,
                     "association": {
                         "connectionType": "HAS_MANY",
                         "associatedWith": "golfer"
@@ -230,6 +233,7 @@ export const schema = {
                     },
                     "isRequired": false,
                     "attributes": [],
+                    "isArrayNullable": true,
                     "association": {
                         "connectionType": "HAS_MANY",
                         "associatedWith": "golfer"
@@ -351,6 +355,7 @@ export const schema = {
                     },
                     "isRequired": false,
                     "attributes": [],
+                    "isArrayNullable": true,
                     "association": {
                         "connectionType": "HAS_MANY",
                         "associatedWith": "round"
@@ -364,6 +369,7 @@ export const schema = {
                     },
                     "isRequired": false,
                     "attributes": [],
+                    "isArrayNullable": true,
                     "association": {
                         "connectionType": "HAS_MANY",
                         "associatedWith": "round"
@@ -377,6 +383,7 @@ export const schema = {
                     },
                     "isRequired": false,
                     "attributes": [],
+                    "isArrayNullable": true,
                     "association": {
                         "connectionType": "HAS_MANY",
                         "associatedWith": "round"
@@ -457,6 +464,19 @@ export const schema = {
                         "associatedWith": "id"
                     }
                 },
+                "teeTime": {
+                    "name": "teeTime",
+                    "isArray": false,
+                    "type": {
+                        "model": "TeeTime"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "BELONGS_TO",
+                        "targetName": "teeTimeID"
+                    }
+                },
                 "score": {
                     "name": "score",
                     "isArray": false,
@@ -488,6 +508,16 @@ export const schema = {
                         "fields": [
                             "roundID"
                         ]
+                    }
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byTeeTime",
+                        "fields": [
+                            "teeTimeID"
+                        ],
+                        "queryField": "scoresByTeeTime"
                     }
                 }
             ]
@@ -530,6 +560,7 @@ export const schema = {
                     },
                     "isRequired": false,
                     "attributes": [],
+                    "isArrayNullable": true,
                     "association": {
                         "connectionType": "HAS_MANY",
                         "associatedWith": "teeTime"
@@ -635,5 +666,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "4b0f03ba4b6f2a7b28306047dc4179ff"
+    "version": "e1f92c00f151d385905a55dcf47b2692"
 };

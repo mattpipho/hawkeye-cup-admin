@@ -84,18 +84,20 @@ export const deleteGolferTeeTime = async (golferTeeTimeId) => {
 };
 
 export const deleteRound = async (round) => {
+	console.log('delete round', round);
 	try {
 		await API.graphql(
 			graphqlOperation(gqlDeleteRound, {
 				input: {
 					id: round,
+					_version: 1,
 				},
 			})
 		);
 		message.success("Round Deleted");
 	} catch (error) {
 		console.log(error);
-		message.error("Round Not Deleted");
+		message.error("Round Not Deleted" + error);
 	}
 };
 

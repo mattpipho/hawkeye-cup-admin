@@ -12,6 +12,7 @@ const RoundList = () => {
 	const [selectedRound, setSelectedRound] = useState();
 
 	mainState.rounds.sort((a, b) => a.name.localeCompare(b.name));
+	console.log(mainState.rounds[0]);
 
 	const getCourseName = (courseId) => {
 		return mainState.courses.find((course) => course.id === courseId).name;

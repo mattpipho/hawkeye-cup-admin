@@ -16,7 +16,7 @@ export declare class Course {
   readonly id: string;
   readonly name: string;
   readonly shortName?: string;
-  readonly holes?: Hole[];
+  readonly holes?: (Hole | null)[];
   constructor(init: ModelInit<Course>);
   static copyOf(source: Course, mutator: (draft: MutableModel<Course>) => MutableModel<Course> | void): Course;
 }
@@ -39,9 +39,9 @@ export declare class Golfer {
   readonly lastName?: string;
   readonly team?: string;
   readonly handicap?: number;
-  readonly rounds?: GolferRound[];
-  readonly scores?: Score[];
-  readonly teeTimes?: TeeTimeGolfer[];
+  readonly rounds?: (GolferRound | null)[];
+  readonly scores?: (Score | null)[];
+  readonly teeTimes?: (TeeTimeGolfer | null)[];
   constructor(init: ModelInit<Golfer>);
   static copyOf(source: Golfer, mutator: (draft: MutableModel<Golfer>) => MutableModel<Golfer> | void): Golfer;
 }
@@ -58,9 +58,9 @@ export declare class Round {
   readonly id: string;
   readonly name: string;
   readonly course?: Course;
-  readonly golfers?: GolferRound[];
-  readonly scores?: Score[];
-  readonly teeTimes?: TeeTime[];
+  readonly golfers?: (GolferRound | null)[];
+  readonly scores?: (Score | null)[];
+  readonly teeTimes?: (TeeTime | null)[];
   constructor(init: ModelInit<Round>);
   static copyOf(source: Round, mutator: (draft: MutableModel<Round>) => MutableModel<Round> | void): Round;
 }
@@ -71,6 +71,7 @@ export declare class Score {
   readonly round?: Round;
   readonly holeID: string;
   readonly hole?: Hole;
+  readonly teeTime?: TeeTime;
   readonly score: number;
   constructor(init: ModelInit<Score>);
   static copyOf(source: Score, mutator: (draft: MutableModel<Score>) => MutableModel<Score> | void): Score;
@@ -80,7 +81,7 @@ export declare class TeeTime {
   readonly id: string;
   readonly name?: string;
   readonly round?: Round;
-  readonly golfers?: TeeTimeGolfer[];
+  readonly golfers?: (TeeTimeGolfer | null)[];
   constructor(init: ModelInit<TeeTime>);
   static copyOf(source: TeeTime, mutator: (draft: MutableModel<TeeTime>) => MutableModel<TeeTime> | void): TeeTime;
 }
