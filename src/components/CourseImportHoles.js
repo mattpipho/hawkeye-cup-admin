@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { useMainDispatch } from "../context/mainContext";
 
 import { API, graphqlOperation } from "aws-amplify";
 import { getCourse } from "../graphql/queries";
@@ -28,6 +29,7 @@ async function fetchCourse(courseId) {
 }
 const CourseImportHoles = ({ dispatch, courseId }) => {
 	const [form] = Form.useForm();
+	const mainDispatch = useMainDispatch();
 	const [courseInfo, setCourseInfo] = useState(initialData);
 
 	useEffect(() => {
@@ -45,7 +47,8 @@ const CourseImportHoles = ({ dispatch, courseId }) => {
 		});
 		if (output.errors.length === 0) {
 			output.data.forEach((hole) => {
-				dispatch(addHole(hole));
+				console.log("addHole: ", hole);
+				mainDispatch(addHole(hole));
 			});
 		} else {
 			message.error(

@@ -1,3 +1,14 @@
+# Hawkeye Cup Admin
+
+## API Key expiration
+
+-   To check the expiration run
+    -   Use https://docs.aws.amazon.com/cli/latest/reference/appsync/index.html#cli-aws-appsync
+    -   aws appsync list-api-keys --api-id (id in aws exports file)
+-   aws appsync update-api-key --api-id <api-id from exports file> --id <id from previous step> --expires <date converted to epoch>
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

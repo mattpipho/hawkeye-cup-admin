@@ -71,6 +71,7 @@ export const listRounds = /* GraphQL */ `
 				}
 				createdAt
 				updatedAt
+				_deleted
 			}
 			nextToken
 		}

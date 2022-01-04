@@ -38,6 +38,13 @@ export const addRound = (values) => {
 		values,
 	};
 };
+export const addTeeTime = (roundID) => {
+	return {
+		type: "ADD_TEE_TIME",
+		roundID,
+		id: uuidv4()
+	};
+};
 export const addTeeTimeGolfer = (teeTimeId, golferId) => {
 	return {
 		type: "ADD_TEE_TIME_GOLFER",

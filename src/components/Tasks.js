@@ -4,6 +4,7 @@ import { Select, Tabs, Card, Row, Col } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
 
 import {
+	addTeeTime,
 	updateActiveRound,
 	addTeeTimeGolfer,
 	deleteGolferTeeTime,
@@ -113,10 +114,7 @@ const Tasks = () => {
 												size="small"
 											>
 												{teeTime.golfers.items
-													.filter(
-														(a) =>
-															a._deleted !== true
-													)
+													.filter((a) => !a._deleted)
 													.map((item) => (
 														<GolferDisplay
 															key={item.id}
@@ -153,6 +151,22 @@ const Tasks = () => {
 											</Card>
 										</Col>
 									))}
+
+									{round.teeTimes.items.length < 4 && (
+										<Col>
+											<button
+												onClick={() => {
+													console.log(
+														"Add Tee Time",
+														viewRoundID
+													);
+													dispatch(addTeeTime(viewRoundID));
+												}}
+											>
+												Add Tee Time
+											</button>
+										</Col>
+									)}
 								</Row>
 							</div>
 						</TabPane>

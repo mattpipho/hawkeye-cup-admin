@@ -5,8 +5,10 @@ import { Configuration } from "../models";
 import {
 	createConfiguration,
 	createGolfer,
+	createHole,
 	createRound,
 	createScore,
+	createTeeTime,
 	createTeeTimeGolfer,
 	deleteConfiguration as gqlDeleteConfiguration,
 	deleteGolfer as gqlDeleteGolfer,
@@ -21,8 +23,31 @@ import {
 import { listScores } from "../graphql/queries";
 import { message } from "antd";
 
+export const addHole = async (values) => {
+	try {
+		await API.graphql(graphqlOperation(createHole, { input: values }));
+		message.success("Hole Added");
+	} catch (error) {
+		console.log(error);
+		message.error("Hole Not Added");
+	}
+};
+
+export const addTeeTime = async (roundID, id) => {
+	try {
+		await API.graphql(
+			graphqlOperation(createTeeTime, {
+				input: { roundID, id, name: " " },
+			})
+		);
+		message.success("Tee Time Added");
+	} catch (error) {
+		console.log(error);
+		message.error("Tee Time Not Added");
+	}
+};
+
 export const addTeeTimeGolfer = async (teeTimeID, golferID) => {
-	console.log(teeTimeID, golferID);
 	try {
 		await API.graphql(
 			graphqlOperation(createTeeTimeGolfer, {
@@ -84,7 +109,6 @@ export const deleteGolferTeeTime = async (golferTeeTimeId) => {
 };
 
 export const deleteRound = async (round) => {
-	console.log('delete round', round);
 	try {
 		await API.graphql(
 			graphqlOperation(gqlDeleteRound, {
@@ -137,8 +161,11 @@ export const saveConfiguration = async (values) => {
 };
 export const saveGolfer = async (values) => {
 	try {
-		await API.graphql(graphqlOperation(createGolfer, { input: values }));
-		message.success("Golfer Added");
+		const response = await API.graphql(
+			graphqlOperation(createGolfer, { input: values })
+		);
+		console.log("response", response);
+		message.success("Golfer Added " + response);
 	} catch (error) {
 		console.log(error);
 		message.error("Golfer Not Added");

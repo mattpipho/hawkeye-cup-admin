@@ -115,6 +115,14 @@
 	width: 70px;
 	height: 2.5em;
 }
+.hole-heading td {
+	background-color: green;
+	font-weight: bold;
+	padding-left: 10px;
+	padding-right: 10px;
+	color: white;
+}
+
 @media only screen and (max-width: 550px) {
 	.ant-layout-content {
 		padding: 0px;
