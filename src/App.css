@@ -117,10 +117,34 @@
 }
 .hole-heading td {
 	background-color: green;
-	font-weight: bold;
+	font-weight: 400;
 	padding-left: 10px;
 	padding-right: 10px;
 	color: white;
+}
+.par-heading td {
+	background-color: gold;
+	font-weight: 400;
+	padding-left: 10px;
+	padding-right: 10px;
+	color: black;
+}
+.handicap-heading td {
+	background-color: maroon;
+	font-weight: 400;
+	padding-left: 10px;
+	padding-right: 10px;
+	color: white;
+}
+.center {
+	margin-left: auto;
+	margin-right: auto;
+}
+.scorecard td {
+	border: 1px solid #ccc
+}
+.scorecard {
+	margin-bottom: 20px;
 }
 
 @media only screen and (max-width: 550px) {

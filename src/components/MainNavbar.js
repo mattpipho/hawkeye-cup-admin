@@ -22,7 +22,7 @@ const Navbar = () => {
 					<Link to="/rounds">Rounds</Link>
 				</Menu.Item>
 				<Menu.Item key="scorecard">
-					<Link to="/scorecard">Scorecard</Link>
+					<Link to="/scorecard">Scores</Link>
 				</Menu.Item>
 			</Menu>
 		</div>
