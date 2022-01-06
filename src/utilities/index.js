@@ -276,8 +276,9 @@ export const updateConfiguration = async (config) => {
 };
 
 export const updateGolfer = async (golfer) => {
+	console.log('golfer to update', golfer);
 	try {
-		await API.graphql(
+		const result = await API.graphql(
 			graphqlOperation(gqlUpdateGolfer, {
 				input: {
 					id: golfer.id,
@@ -289,6 +290,7 @@ export const updateGolfer = async (golfer) => {
 				},
 			})
 		);
+		console.log('result', result);
 		message.success("Golfer Updated");
 	} catch (error) {
 		console.log(error);

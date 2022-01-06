@@ -105,6 +105,7 @@ export const mainReducer = (state, action) => {
 			updateGolfer(hdcpGolferState[hdcpIndex]);
 			return { ...state, golfers: hdcpGolferState };
 		case "UPDATE_GOLFER_TEAM":
+			console.log('udpate golfer team', action);
 			const golferIndex = state.golfers.findIndex(
 				(g) => g.id === action.golferId
 			);
