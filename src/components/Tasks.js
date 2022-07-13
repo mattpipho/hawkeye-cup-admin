@@ -27,7 +27,7 @@ const GolferDisplay = ({ golfer, deleteTeeTimeGolfer }) => {
 			<div
 				className={
 					"tee-time-golfer " +
-					golfer.team.toLowerCase() +
+					golfer.team?.toLowerCase() +
 					"-indicator"
 				}
 			>
