@@ -8,7 +8,7 @@ import awsconfig from "./aws-exports";
 import App from "./components/App";
 
 // import "./index.css";
-import "antd/dist/antd.css";
+import "antd/dist/antd.min.css";
 
 Amplify.configure(awsconfig);
 
