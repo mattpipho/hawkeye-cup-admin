@@ -12,10 +12,10 @@ const HomePage = lazy(() => import("./HomePage"));
 const MaintainCourses = lazy(() => import("./MaintainCourses"));
 const MaintainGolfers = lazy(() => import("./MaintainGolfers"));
 const MaintainRounds = lazy(() => import("./MaintainRounds"));
-const Tasks = lazy(() => import("./Tasks"));
+const Tasks = lazy(() => import("../views/tasks/tasks"));
 const ScorecardPage = lazy(() => import("./ScorecardPage"));
 const MaintainConfigurations = lazy(() =>
-	import("./configurations/MaintainConfigurations")
+	import("../views/configurations/MaintainConfigurations")
 );
 
 function App() {

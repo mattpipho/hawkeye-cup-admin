@@ -7,7 +7,7 @@ import { Row, Col } from "antd";
 import { useMainState } from "../context/mainContext";
 
 const ScorecardPage = () => {
-	const {rounds} = useMainState();
+	const { rounds } = useMainState();
 
 	return (
 		<MainLayout>
@@ -16,7 +16,7 @@ const ScorecardPage = () => {
 					{rounds
 						.sort((a, b) => a.name.localeCompare(b.name))
 						.map((round) => (
-							<RoundScores round={round} />
+							<RoundScores key={round.id} round={round} />
 						))}
 				</Col>
 			</Row>

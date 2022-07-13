@@ -14,6 +14,7 @@ const ConfigurationList = () => {
 
 	mainState.configurations.sort((a, b) => a.key.localeCompare(b.key));
 
+	console.log(mainState.configurations);
 	const columns = [
 		{
 			title: "Key",
@@ -39,6 +40,7 @@ const ConfigurationList = () => {
 						title="Confirm Delete"
 						visible={displayConfirmDelete}
 						onOk={() => {
+							console.log("cid", configuration.id);
 							dispatch(deleteConfiguration(configuration.id));
 							setConfirmDeleteDisplay(false);
 						}}

@@ -42,7 +42,7 @@ export const addTeeTime = (roundID) => {
 	return {
 		type: "ADD_TEE_TIME",
 		roundID,
-		id: uuidv4()
+		id: uuidv4(),
 	};
 };
 export const addTeeTimeGolfer = (teeTimeId, golferId) => {
@@ -54,6 +54,7 @@ export const addTeeTimeGolfer = (teeTimeId, golferId) => {
 };
 
 export const deleteConfiguration = (configId) => {
+	console.log("delete config", configId);
 	return {
 		type: "DELETE_CONFIGURATION",
 		configId,

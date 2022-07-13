@@ -1,17 +1,15 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { Select, Tabs, Card, Row, Col } from "antd";
-import { DeleteOutlined } from "@ant-design/icons";
+import { Select, Tabs, Row, Col } from "antd";
 
-import {
-	addTeeTime,
-	updateActiveRound,
-	addTeeTimeGolfer,
-	deleteGolferTeeTime,
-} from "../actions";
+import { addTeeTime, updateActiveRound } from "../../actions";
 
-import MainLayout from "./MainLayout";
-import { useMainState, useMainDispatch } from "../context/mainContext";
+import { getAvailableGolfers } from "../../utilities";
+
+import Group from "./group";
+
+import MainLayout from "../../components/MainLayout";
+import { useMainState, useMainDispatch } from "../../context/mainContext";
 
 const { TabPane } = Tabs;
 
@@ -19,25 +17,6 @@ const lookUpCourseName = (courses, courseID) => {
 	const courseData = courses.find((course) => course.id === courseID);
 	if (!courseData) return "Course Not Set";
 	return courseData.name;
-};
-
-const GolferDisplay = ({ golfer, deleteTeeTimeGolfer }) => {
-	return (
-		<div className="full-width float-left">
-			<div
-				className={
-					"tee-time-golfer " +
-					golfer.team?.toLowerCase() +
-					"-indicator"
-				}
-			>
-				{golfer.lastName}
-			</div>
-			<div className="float-left tee-time-golfer-delete">
-				<DeleteOutlined onClick={() => deleteTeeTimeGolfer()} />
-			</div>
-		</div>
-	);
 };
 
 const Tasks = () => {
@@ -63,12 +42,6 @@ const Tasks = () => {
 				round.courseID
 			)})`,
 			value: round.id,
-		}));
-	const golferOptions = state.golfers
-		.sort((a, b) => a.lastName.localeCompare(b.lastName))
-		.map((golfer) => ({
-			label: golfer.lastName,
-			value: golfer.id,
 		}));
 
 	const updateViewRound = (key) => {
@@ -115,55 +88,16 @@ const Tasks = () => {
 												}}
 												key={teeTime.id}
 											>
-												<Card
-													key={teeTime.id}
-													title={`Group ${index + 1}`}
-													bordered={true}
-													// style={{ width: 200 }}
-													size="small"
-												>
-													{teeTime.golfers.items
-														.filter(
-															(a) => !a._deleted
-														)
-														.map((item) => (
-															<GolferDisplay
-																key={item.id}
-																golfer={
-																	item.golfer
-																}
-																deleteTeeTimeGolfer={() =>
-																	dispatch(
-																		deleteGolferTeeTime(
-																			item.id
-																		)
-																	)
-																}
-															/>
-														))}
-													<div className="add-golfer-select-wrapper">
-														<Select
-															value="Add Golfer"
-															placeholder="Add Golfer"
-															style={{
-																width: 125,
-															}}
-															onChange={(
-																golferId
-															) => {
-																dispatch(
-																	addTeeTimeGolfer(
-																		teeTime.id,
-																		golferId
-																	)
-																);
-															}}
-															options={
-																golferOptions
-															}
-														/>
-													</div>
-												</Card>
+												<Group
+													teeTime={teeTime}
+													groupName={`Group ${
+														index + 1
+													}`}
+													availableGolfers={getAvailableGolfers(
+														state.golfers,
+														round.teeTimes
+													)}
+												/>
 											</Col>
 										)
 									)}

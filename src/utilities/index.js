@@ -276,7 +276,7 @@ export const updateConfiguration = async (config) => {
 };
 
 export const updateGolfer = async (golfer) => {
-	console.log('golfer to update', golfer);
+	console.log("golfer to update", golfer);
 	try {
 		const result = await API.graphql(
 			graphqlOperation(gqlUpdateGolfer, {
@@ -290,10 +290,24 @@ export const updateGolfer = async (golfer) => {
 				},
 			})
 		);
-		console.log('result', result);
+		console.log("result", result);
 		message.success("Golfer Updated");
 	} catch (error) {
 		console.log(error);
 		message.error("Golfer Not Updated");
 	}
+};
+
+export const getAvailableGolfers = (golfers, teeTimes) => {
+	let assignedGolfers = [];
+	teeTimes?.items.forEach((item) => {
+		item.golfers.items.forEach(({ golfer }) => {
+			if (!golfer._deleted) assignedGolfers.push(golfer.id);
+		});
+	});
+
+	return golfers.filter((golfer) => {
+
+		return !assignedGolfers.includes(golfer.id);
+	});
 };
