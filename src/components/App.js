@@ -1,5 +1,7 @@
 import React, { Suspense, lazy } from "react";
-import { withAuthenticator } from "@aws-amplify/ui-react";
+// import { withAuthenticator } from "@aws-amplify/ui-react";
+import { Authenticator } from "@aws-amplify/ui-react";
+import "@aws-amplify/ui-react/styles.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import { MainProvider } from "../context/mainContext";
@@ -18,38 +20,42 @@ const MaintainConfigurations = lazy(() =>
 
 function App() {
 	return (
-		<MainProvider>
-			<Suspense
-				fallback={<div style={{ fontSize: "20px" }}>Loading ...</div>}
-			>
-				<Router>
-					<Switch>
-						<Route exact path="/">
-							<HomePage />
-						</Route>
-						<Route exact path="/configurations">
-							<MaintainConfigurations />
-						</Route>
-						<Route exact path="/courses">
-							<MaintainCourses />
-						</Route>
-						<Route exact path="/golfers">
-							<MaintainGolfers />
-						</Route>
-						<Route exact path="/rounds">
-							<MaintainRounds />
-						</Route>
-						<Route exact path="/tasks">
-							<Tasks />
-						</Route>
-						<Route exact path="/scorecard">
-							<ScorecardPage />
-						</Route>
-					</Switch>
-				</Router>
-			</Suspense>
-		</MainProvider>
+		<Authenticator>
+			<MainProvider>
+				<Suspense
+					fallback={
+						<div style={{ fontSize: "20px" }}>Loading ...</div>
+					}
+				>
+					<Router>
+						<Switch>
+							<Route exact path="/">
+								<HomePage />
+							</Route>
+							<Route exact path="/configurations">
+								<MaintainConfigurations />
+							</Route>
+							<Route exact path="/courses">
+								<MaintainCourses />
+							</Route>
+							<Route exact path="/golfers">
+								<MaintainGolfers />
+							</Route>
+							<Route exact path="/rounds">
+								<MaintainRounds />
+							</Route>
+							<Route exact path="/tasks">
+								<Tasks />
+							</Route>
+							<Route exact path="/scorecard">
+								<ScorecardPage />
+							</Route>
+						</Switch>
+					</Router>
+				</Suspense>
+			</MainProvider>
+		</Authenticator>
 	);
 }
 
-export default withAuthenticator(App);
+export default App;
