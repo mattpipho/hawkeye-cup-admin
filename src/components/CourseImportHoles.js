@@ -4,7 +4,7 @@ import { useMainDispatch } from "../context/mainContext";
 
 import { API, graphqlOperation } from "aws-amplify";
 import { getCourse } from "../graphql/queries";
-import "antd/dist/antd.css";
+import "antd/dist/antd.min.css";
 
 import { Button, Form, Input, Card, message } from "antd";
 import Papa from "papaparse";
