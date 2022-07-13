@@ -103,54 +103,70 @@ const Tasks = () => {
 						<TabPane tab={round.name} key={round.id}>
 							<h3>{round.name}</h3>
 							<div className="site-card-wrapper">
-								<Row gutter={16}>
-									{round.teeTimes.items.map((teeTime) => (
-										<Col span={4} key={teeTime.id}>
-											<Card
+								<Row gutter={{ xs: 1, sm: 1, md: 16, lg: 16 }}>
+									{round.teeTimes.items.map(
+										(teeTime, index) => (
+											<Col
+												span={{
+													xs: 32,
+													sm: 32,
+													md: 4,
+													lg: 4,
+												}}
 												key={teeTime.id}
-												title={teeTime.name}
-												bordered={true}
-												// style={{ width: 200 }}
-												size="small"
 											>
-												{teeTime.golfers.items
-													.filter((a) => !a._deleted)
-													.map((item) => (
-														<GolferDisplay
-															key={item.id}
-															golfer={item.golfer}
-															deleteTeeTimeGolfer={() =>
-																dispatch(
-																	deleteGolferTeeTime(
-																		item.id
+												<Card
+													key={teeTime.id}
+													title={`Group ${index + 1}`}
+													bordered={true}
+													// style={{ width: 200 }}
+													size="small"
+												>
+													{teeTime.golfers.items
+														.filter(
+															(a) => !a._deleted
+														)
+														.map((item) => (
+															<GolferDisplay
+																key={item.id}
+																golfer={
+																	item.golfer
+																}
+																deleteTeeTimeGolfer={() =>
+																	dispatch(
+																		deleteGolferTeeTime(
+																			item.id
+																		)
 																	)
-																)
+																}
+															/>
+														))}
+													<div className="add-golfer-select-wrapper">
+														<Select
+															value="Add Golfer"
+															placeholder="Add Golfer"
+															style={{
+																width: 125,
+															}}
+															onChange={(
+																golferId
+															) => {
+																dispatch(
+																	addTeeTimeGolfer(
+																		teeTime.id,
+																		golferId
+																	)
+																);
+															}}
+															options={
+																golferOptions
 															}
 														/>
-													))}
-												<div className="add-golfer-select-wrapper">
-													<Select
-														value="Add Golfer"
-														placeholder="Add Golfer"
-														style={{
-															width: 125,
-														}}
-														onChange={(
-															golferId
-														) => {
-															dispatch(
-																addTeeTimeGolfer(
-																	teeTime.id,
-																	golferId
-																)
-															);
-														}}
-														options={golferOptions}
-													/>
-												</div>
-											</Card>
-										</Col>
-									))}
+													</div>
+												</Card>
+											</Col>
+										)
+									)}
 
 									{round.teeTimes.items.length < 4 && (
 										<Col>
@@ -160,7 +176,9 @@ const Tasks = () => {
 														"Add Tee Time",
 														viewRoundID
 													);
-													dispatch(addTeeTime(viewRoundID));
+													dispatch(
+														addTeeTime(viewRoundID)
+													);
 												}}
 											>
 												Add Tee Time

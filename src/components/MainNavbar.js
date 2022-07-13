@@ -1,8 +1,9 @@
 import React from "react";
+import { withAuthenticator } from "@aws-amplify/ui-react";
 import { Link } from "react-router-dom";
 import { Menu } from "antd";
 
-const Navbar = () => {
+const Navbar = ({ signOut }) => {
 	const links = [
 		"Tasks",
 		"Configurations",
@@ -12,10 +13,15 @@ const Navbar = () => {
 		"Scorecard",
 	];
 
-	const items = links.map((link) => ({
+	let items = links.map((link) => ({
 		label: <Link to={`/${link.toLowerCase()}`}>{link}</Link>,
 		key: link,
 	}));
+
+	items.push({
+		label: <button onClick={signOut}>Sign out</button>,
+		key: "sign-out",
+	});
 
 	return (
 		<div className="menu">
@@ -24,4 +30,4 @@ const Navbar = () => {
 	);
 };
 
-export default Navbar;
+export default withAuthenticator(Navbar);

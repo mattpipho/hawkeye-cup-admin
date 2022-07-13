@@ -6,10 +6,6 @@ import { Configuration } from "../models";
 
 import { mainReducer } from "../reducers/mainReducer";
 
-//import Amplify from "@aws-amplify/core";
-// import { DataStore, Predicates } from "@aws-amplify/datastore";
-// import { Round } from "./models";
-
 import { listCourses, listRounds } from "../graphql/custom-queries";
 import { listGolfers, listScores } from "../graphql/queries";
 
