@@ -77,3 +77,64 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+
+
+
+# Hawkeye
+
+## Setup
+
+- Course Selection for the Sessions
+- Golfer Details
+- Session Games
+
+
+## Draft 
+
+- Sunday Night Draft to determine the 8 Black and 8 Gold Team Members
+
+## Day 1 - Format
+
+### Setup in ther Morning
+- Put the Groupings together (Would like to do that from the app)
+
+### Morning 
+- 8 Team (2 Pts available Per Match)
+- 18 Hole 2 Person Low Ball Match Play
+    - Low Ball Match 
+    - 1 point per hole and half a hole if pushed
+    - This could be visible during the round ( include in front end )
+
+- Show in / out and total 
+
+- Skins
+    - Net off of handicap
+
+- Stableford
+    - [Scoring](https://golfbit.com/stableford)
+
+- Net Score Leader Board
+
+- Condo Mondo
+
+
+
+
+### Afternoon
+- Two Person Best Shot
+
+
+
+### Print outs of Day 1
+- 18 Hole Scores 
+- Skins
+- Stableford
+
+
+
+### Version 2 - Phase 1
+
+- Set Golfers
+- Set Groups
+- Enter Scores in
